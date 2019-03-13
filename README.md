@@ -3,13 +3,13 @@ This is a collection of code examples focusing on porting FORTRAN codes to run o
 While these examples have a heavy FORTRAN emphasis, some examples also include C++ usage.
 
 These include:
-CUDA - CUDA examples
-debug_symbols_issues - Examples of compiling device code with debug symbols to work with debuggers
-kernel_scaling_tests - early performance tests
-memory_testing - tests of pinned memory, unified memory, etc
-mixed_language_trials - many codes are C++ and FORTRAN executables.  This contains examples of trials compiling mixed language examples and launching kernels from different languages/technologies in the same executable.
-OpenMP4.5 - tests exercising OpenMP pragmas
-performance_issues - early trials of performance testing with specific features
+* CUDA - CUDA examples
+* debug_symbols_issues - Examples of compiling device code with debug symbols to work with debuggers
+* kernel_scaling_tests - early performance tests
+* memory_testing - tests of pinned memory, unified memory, etc
+* mixed_language_trials - many codes are C++ and FORTRAN executables.  This contains examples of trials compiling mixed language examples and launching kernels from different languages/technologies in the same executable.
+* OpenMP4.5 - tests exercising OpenMP pragmas
+* performance_issues - early trials of performance testing with specific features
 
 Sample Makefiles are included which support the LLNL Sierra platform using the IBM XL compiler.
 
