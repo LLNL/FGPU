@@ -1,0 +1,29 @@
+module simpleOps_m
+contains
+  attributes(global) subroutine inc(a, b)
+      implicit none
+      integer :: a(:)
+      integer, value :: b
+      integer :: i
+      i = threadIdx%x
+      a(i) = a(i)+b
+ end subroutine inc
+end module simpleOps_m
+
+program incTest
+       use cudafor
+       use simpleOps_m
+       implicit none
+       integer :: b, n = 256
+       integer, allocatable :: a(:)
+       integer, allocatable, device :: a_d(:)
+       allocate (a(n),a_d(n))
+       a = 1
+       b = 3
+       a_d = a
+       call inc<<<1,n>>>(a_d, b)
+       a = a_d
+       if (all(a == 4)) &
+             write(*,*) 'Test Passed'
+       deallocate (a,a_d)
+end program incTest

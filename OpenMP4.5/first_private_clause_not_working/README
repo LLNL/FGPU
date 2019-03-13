@@ -1,0 +1,3 @@
+Simple algorithm that generates some random numbers and runs some trials on GPU.
+
+'First private' clause was not functioning correctly, and kernel issued ambiguous error message.

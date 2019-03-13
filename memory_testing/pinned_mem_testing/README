@@ -1,0 +1,5 @@
+Several code examples of testing pinning ( page locking ) memory for faster transfers to GPU.
+
+Encountered error when memory pinned in XLF FORTRAN via 'pinned' attribute.  Running vanilla CPU code resulted in segfault when memory when pinned memory freed.  Is XLF not unregistering the pinned memory before freeing?
+
+Tested workaround using CUDA API to pin memory.  This was needed to work around limitation in OpenMP that prevents allocatables in derived types ( so we had to use pointers ).

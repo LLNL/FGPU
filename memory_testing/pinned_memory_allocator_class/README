@@ -1,0 +1,4 @@
+Allocating the rank 3 array in this code example with a cuda malloc generates an internal compiler fault in XLF.
+PGI compiles and runs it fine.
+
+-- Aaron

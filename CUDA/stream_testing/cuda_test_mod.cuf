@@ -1,0 +1,60 @@
+module cuda_test_mod
+
+contains
+subroutine looptest_cuda(a_type)
+
+	use derived_type_mod
+   implicit none
+
+	! parameter
+   type(DerivedType), intent(inout) :: a_type
+	integer(kind=cuda_stream_kind) :: a_stream
+   integer :: a, c, g, numc, numg, numa
+	integer :: istat
+
+	a_stream = a_type%stream
+   a_type%psi_d = a_type%psi
+   a_type%phi_d = a_type%phi
+   a_type%weight_d = a_type%weight
+	
+	numc = a_type%numc
+	numg = a_type%numg
+	numa = a_type%numa
+   call looptest_cuda_kernel<<<numc, numg, 0, a_type%stream>>>( numc, numg, numa, a_type%psi_d, a_type%phi_d, a_type%weight_d )
+
+   a_type%phi = a_type%phi_d
+
+	print *,"Ran cuda kernel."
+
+   return
+   end subroutine looptest_cuda
+
+attributes(global) subroutine looptest_cuda_kernel(numc, numg, numa, psi, phi, weight)
+
+   use cudafor
+
+   implicit none
+
+!  Arguments
+   integer, value, intent(in):: numc, numg, numa
+   real, intent(in), device :: psi(numg, numc, numa )
+   real, device :: phi(numg, numc)
+   real, intent(in), device :: weight(numa)
+
+!  Local
+
+   integer :: c, g, a
+
+   c = blockIdx.x
+   g = threadIdx.x
+
+   phi(g,c) = 0.0
+
+   do a=1,numa
+     phi(g, c) = phi(g, c) + (weight(a) * psi(g,c,a))
+   end do
+
+   return
+   end subroutine looptest_cuda_kernel
+
+end module cuda_test_mod

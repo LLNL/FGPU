@@ -1,0 +1,5 @@
+Examples of code that did not function with early OpenMP4.5 compiler support.
+
+Starts with simple standalone target enter data map and target exit data map clauses.a
+
+After that was resolved, further examples adding derived types and attempts to map data inside those types which failed.

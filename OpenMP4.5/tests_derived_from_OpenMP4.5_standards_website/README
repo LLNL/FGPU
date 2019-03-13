@@ -1,0 +1,3 @@
+This family of code examples are derived from the OpenMP 4.5 website code examples.
+
+They provide examples of code directly pulled from the website, that did not compile or run correctly under early OpenMP4.5 compiler support.  Some examples compiled, but then broke if small additions are made, especially involving derived types.

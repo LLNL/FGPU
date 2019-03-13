@@ -1,0 +1,8 @@
+Attempts to use cuda managed memory in CUDA FORTRAN.
+
+Standalone arrays worked.
+
+Problems encountered using 'managed' on arrays within derived types.
+Problems encountered when pointers to these arrays were passed in and out of functions.  Compilers seemed to lose track of the memory being in managed memory.
+
+Early compiler issues with array properties not being propogated through functions.

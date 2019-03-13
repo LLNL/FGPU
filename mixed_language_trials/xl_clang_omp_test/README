@@ -1,0 +1,5 @@
+This test code contains a main driver which executes a C OpenMP kernel and FORTRAN OpenMP kernel.
+It tests the ability to use clang + xlf, as well as xlc/xlf.
+
+-- Aaron Black
+black27@llnl.gov

@@ -1,0 +1,7 @@
+This test code contains a main driver which executes several different saxpy kernels to test that multiple technologies are able to run in same executable.
+
+CUDA C
+CUDAFORTRAN
+OPENMP4.5 C
+
+-- Aaron Black

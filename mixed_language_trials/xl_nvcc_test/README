@@ -1,0 +1,4 @@
+The makefile has three targets:
+- a pure FORTRAN/CUDAFORTRAN
+- a C++/FORTRAN/CUDAFORTRAN linked with xlf
+- a C++/FORTRAN/CUDAFORTRAN linked with xlC

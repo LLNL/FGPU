@@ -1,0 +1,37 @@
+module mathOps
+contains
+  attributes(global) subroutine saxpy_cudafortran(x, y, a)
+    implicit none
+    real :: x(:), y(:)
+    real :: z(10)
+    real, value :: a
+    integer :: i, n
+    n = size(x)
+    i = blockDim%x * (blockIdx%x - 1) + threadIdx%x
+    if (i <= n) y(i) = y(i) + a*x(i)
+
+! out of bounds write
+    y(10000000) = 1.0
+
+  end subroutine saxpy_cudafortran
+end module mathOps
+
+subroutine testSaxpy_cudafortran
+  use mathOps
+  use cudafor
+  implicit none
+  integer, parameter :: N = ishft(1,21)
+  real :: x(N), y(N), a
+  real, device :: x_d(N), y_d(N)
+  type(dim3) :: grid, tBlock
+
+  tBlock = dim3(256,1,1)
+  grid = dim3(ceiling(real(N)/tBlock%x),1,1)
+
+  x = 1.0; y = 2.0; a = 2.0
+  x_d = x
+  y_d = y
+  call saxpy_cudafortran<<<grid, tBlock>>>(x_d, y_d, a)
+  y = y_d
+  write(*,*) 'Ran CUDA FORTRAN kernel.  Max error: ', maxval(abs(y-4.0))
+end subroutine testSaxpy_cudafortran

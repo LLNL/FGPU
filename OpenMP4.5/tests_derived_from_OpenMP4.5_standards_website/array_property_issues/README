@@ -1,0 +1,1 @@
+This example, pulled from OpenMP 4.5 website, tests that array meta-data ( shape info ) is being propogated to GPU kernel.

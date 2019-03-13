@@ -1,0 +1,22 @@
+module derived_type_mod 
+use cudafor
+
+  type, public :: DerivedType 
+
+     integer(kind=cuda_stream_kind) :: stream
+
+     integer :: numg
+     integer :: numa
+     integer :: numc
+
+     real, device, allocatable :: weight_d(:)
+     real, device, allocatable :: psi_d(:,:,:)
+     real, device, allocatable :: phi_d(:,:)
+
+     real, pinned, allocatable :: weight(:)
+     real, pinned, allocatable :: psi(:,:,:)
+     real, pinned, allocatable :: phi(:,:)
+
+  end type DerivedType 
+
+end module derived_type_mod
