@@ -1,0 +1,6 @@
+This test code contains an example of:
+- Mixing OpenMP and CUDA to allow memory movement to be handled with OpenMP, but the solve kernel to be implemented in CUDA.
+
+
+-- Aaron Black
+black27@llnl.gov

@@ -1,0 +1,35 @@
+module cufkernels
+contains
+  attributes(global) subroutine saxpy_cudafortran(x,y,a,n)
+    implicit none
+    real,device :: x(*)
+    real,device :: y(*)
+    real,value :: a
+    integer,value :: n
+
+    integer :: i
+
+    i = blockDim%x * (blockIdx%x - 1) + threadIdx%x
+    if (i <= n) y(i) = y(i) + a*x(i)
+  end subroutine saxpy_cudafortran
+end module cufkernels
+
+subroutine testsaxpy_cudafortran(x,y,a,n)
+  use cufkernels
+  use cudafor
+  implicit none
+
+  real,device :: x(*)
+  real,device :: y(*)
+  real :: a
+  integer :: n
+
+  type(dim3) :: grid, tBlock
+
+  tBlock = dim3(256,1,1)
+  grid = dim3(ceiling(real(N)/tBlock%x),1,1)
+
+  call saxpy_cudafortran<<<grid, tBlock>>>(x,y,a,n)
+
+!  write(*,*) 'Ran CUDA FORTRAN kernel.  Max error: ', maxval(abs(y(1:n)-4.0))
+end subroutine testsaxpy_cudafortran
