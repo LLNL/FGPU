@@ -1,0 +1,15 @@
+This test code contains a main driver which executes either a C OpenMP kernel, or three different kernels ( C OpenMP, FORTRAN OpenMP, CUDA FORTRAN ).
+
+Cuda-memcheck is able to spot the illegal write operation in the kernel.  No errors are reported for the illegal write operations from the OpenMP versions.
+
+The FORTRAN OpenMP kernels and the CUDA FORTRAN kernel do not produce DWARF that the NVIDIA tools are recognizing.
+The C OpenMP kernel debug info works by itself, but stops working if the FORTRAN kernels are compiled.
+
+When using NVVP unguided analysis, pc sampling,  on the Fortran OMP kernel, it occassionally emits an error that the source file can't be found.
+
+XLF CUDAFORTRAN
+XLC OPENMP4.5 C
+XLF OPENMP4.5 FORTRAN
+
+-- Aaron Black
+black27@llnl.gov
