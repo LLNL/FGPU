@@ -1,0 +1,5 @@
+Example of mapping over an array of function pointers to the GPU using OpenMP.
+
+Provided by:
+Bryce Campbell
+campbell91@llnl.gov
