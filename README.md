@@ -2,7 +2,7 @@ This is a collection of code examples focusing on porting FORTRAN codes to run o
 
 While these examples have a heavy FORTRAN emphasis, some examples also include C++ usage for use in demonstrating OpenMP or CUDA with mixed C++/FORTRAN language executables.
 
-* interoperability - examples on how to use OpenMP with other technologies or libraries
+* examples - general examples on how to use OpenMP with more advanced concepts such as custom memory allocators, mapping function pointers, etc.
 * iso_c_bindings - The OpenMP API for FORTRAN only provides a subset of the C API.  This directory contains iso_c_bindings of some of these missing API routines.
 * macro_layer - An example of using a macro layer over OpenMP pragmas.
 * partially_supported_constructs - Examples of OpenMP constructs that need enhancements to meet FORTRAN needs.
