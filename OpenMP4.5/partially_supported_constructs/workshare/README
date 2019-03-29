@@ -1,6 +1,0 @@
-Example of testing the OpenMP workshare construct over FORTRAN vector/array operations.
-
-There is no current mechanism for spreading a workshare over thread teams, so the teams+workshare kernel does not function correctly.
-This sharply limits the parallelism available to solve an array operation.
-
-Workshares over a single thread team should work.

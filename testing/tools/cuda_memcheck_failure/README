@@ -1,0 +1,10 @@
+This test code contains a main driver which executes either a C OpenMP kernel, or three different kernels ( C OpenMP, FORTRAN OpenMP, CUDA FORTRAN ).
+
+Cuda-memcheck is able to spot the illegal write operation in the CUDA kernel, but fails to report it for the OpenMP kernel versions.
+
+XLF CUDAFORTRAN
+XLC OPENMP4.5 C
+XLF OPENMP4.5 FORTRAN
+
+-- Aaron Black
+black27@llnl.gov

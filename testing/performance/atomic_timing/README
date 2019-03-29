@@ -1,0 +1,1 @@
+Code example testing functionality of atomic in OpenMP.  Performance was slower than expected in early testing on DOE SIERRA system.

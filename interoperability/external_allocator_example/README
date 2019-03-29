@@ -1,0 +1,4 @@
+Example testing the OpenMP capability to use pointers allocated on the CPU and GPU from an allocator outside OpenMP.
+
+-- Aaron Black
+black27@llnl.gov
