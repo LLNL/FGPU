@@ -1,0 +1,6 @@
+This code provides an example of using a macro layer to enable/disable OpenMP pragmas.
+
+Newer OpenMP pragmas can be problematic in compilers that do not yet recognize or support, causing the source code to fail compiling.
+
+-- Aaron Black
+black27@llnl.gov
