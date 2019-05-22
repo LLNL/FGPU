@@ -1,0 +1,3 @@
+This example tests the capability to map over sections of an array to the GPU.
+
+The code maps over slices of 2d arrays to perform a daxpy operation on each slice.
