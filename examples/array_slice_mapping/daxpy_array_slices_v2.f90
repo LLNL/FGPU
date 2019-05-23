@@ -1,3 +1,5 @@
+! This example attempts to map over a slice of an array, operate on it, then map it back.
+! It will loop and operate over each slice of the array.
 program daxpy_array_slices
    use cudafor
    implicit none
@@ -7,7 +9,7 @@ program daxpy_array_slices
    real, pinned, allocatable, dimension(:,:) :: x, y
 
    a = 5
-   num_slices = 2
+   num_slices = 80
    num_values = 1024
 
    allocate(x(num_values,num_slices))
@@ -19,21 +21,21 @@ program daxpy_array_slices
       y(:,j) = DBLE(j)
    end do
 
+!$omp parallel do
    do j = 1, num_slices
       print *, "----------"
       print *, "before x(1:10,", j, ") ", x(1:10,j)
       print *, "before y(1:10,", j, ") ", y(1:10,j)
       print *, "----------"
-   end do
 
-   do j = 1, num_slices
+! Map slice to GPU
+
       !$omp target enter data map(to:x(:,j))
       print *, "Mapped x(:,", j, ")"
       !$omp target enter data map(to:y(:,j))
       print *, "Mapped y(:,", j, ")"
-   end do
 
-   do j = 1, num_slices
+! Work on slice
 
       !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) default(none)
       do i = 1, num_values
@@ -42,18 +44,17 @@ program daxpy_array_slices
       !$omp end target teams distribute parallel do
 
       print *, "Ran daxpy on slice ", j
-   end do
 
-   do j = 1, num_slices
+! Map slice back to CPU
+
       !$omp target exit data map(from:x(:,j))
       !$omp target exit data map(from:y(:,j))
-   end do
 
-   do j = 1, num_slices
       print *, "----------"
       print *, "after x(1:10,", j, ") ", x(1:10,j)
       print *, "after y(1:10,", j, ") ", y(1:10,j)
       print *, "----------"
    end do
+!$omp end parallel do
 
 end program daxpy_array_slices
