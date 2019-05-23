@@ -1,11 +1,9 @@
 ! This example attempts to map over slices of an array to a GPU, then launch kernels that act on those slices.
-
 program daxpy_array_slices
    use cudafor
    implicit none
 
    integer i, j, num_slices, num_values, a
-
    real, pinned, allocatable, dimension(:,:) :: x, y
 
    a = 5
@@ -24,7 +22,6 @@ program daxpy_array_slices
    do j = 1, num_slices
       print *, "----------"
       print *, "before x(1:10,", j, ") ", x(1:10,j)
-      print *, "before y(1:10,", j, ") ", y(1:10,j)
       print *, "----------"
    end do
 
@@ -36,7 +33,6 @@ program daxpy_array_slices
    end do
 
    do j = 1, num_slices
-
       !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) default(none)
       do i = 1, num_values
          x(i,j) = a*x(i,j) + y(i,j)
