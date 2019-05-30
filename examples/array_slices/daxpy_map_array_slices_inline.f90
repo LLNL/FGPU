@@ -1,5 +1,4 @@
 ! This example attempts to map over a slice of an array, operate on it, then map it back.
-! It will loop and operate over each slice of the array.
 program daxpy_array_slices
    use cudafor
    implicit none

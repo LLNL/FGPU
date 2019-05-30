@@ -1,0 +1,5 @@
+This example tests the capability to map or updates slices of an array to/from the GPU.
+
+Important note:
+When mapping over multiple sections of an array, it's important to also repeat the map of that slice in the OpenMP kernel pragmas.
+Otherwise, it's ambiguous on which array slice the runtime should expect to use, and you'll encounter overlapping map errors from the runtime when it attempts to implicitly map the entire array over.

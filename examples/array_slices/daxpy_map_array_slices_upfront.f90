@@ -1,4 +1,5 @@
-! This example attempts to map over slices of an array to a GPU, then launch kernels that act on those slices.
+! This example maps over slices of an array to a GPU, then launch kernels that act on those slices.
+! All the slices are mapped up-front, before the kernel launches.
 program daxpy_array_slices
    use cudafor
    implicit none
@@ -25,6 +26,7 @@ program daxpy_array_slices
       print *, "----------"
    end do
 
+   !$omp parallel do
    do j = 1, num_slices
       !$omp target enter data map(to:x(:,j))
       print *, "Mapped x(:,", j, ")"
@@ -32,6 +34,7 @@ program daxpy_array_slices
       print *, "Mapped y(:,", j, ")"
    end do
 
+  !$omp parallel do
    do j = 1, num_slices
       !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(to:x(:,j), y(:,j))  default(none)
       do i = 1, num_values
@@ -42,6 +45,7 @@ program daxpy_array_slices
       print *, "Ran daxpy on slice ", j
    end do
 
+  !$omp parallel do
    do j = 1, num_slices
       !$omp target exit data map(from:x(:,j))
       !$omp target exit data map(from:y(:,j))

@@ -1,9 +1,0 @@
-This example tests the capability to map over sections of an array to the GPU.
-
-The 'array slices' examples map over slices of 2d arrays.
-
-The 'type ptrs' examples map over slices of a 1d array containing types pointers.
-
-Important note:
-When mapping over multiple sections of an array, it's important to also repeat the map of that slice in the kernel markup.
-Otherwise, it's ambiguous on which array slice the runtime should expect to use.
