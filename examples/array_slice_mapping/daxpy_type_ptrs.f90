@@ -29,15 +29,16 @@ program daxpy_type_ptrs
 
 !$omp parallel do
    do j = 1, num_items
-      print *, "x(1:10):", data_ptrs(j)%x(1:10)
-      print *, "y(1:10):", data_ptrs(j)%x(1:10)
+      print *, "----------"
+      print *, "before x(1:10,", j, ") ", data_ptrs(j)%x(1:10)
+      print *, "----------"
 
       !$omp target enter data map(to:data_ptrs(j))
       !$omp target enter data map(to:data_ptrs(j)%x)
       !$omp target enter data map(to:data_ptrs(j)%y)
       print *, "Mapped data_ptrs(", j, ")"
 
-      !$omp target teams distribute parallel do private(i) shared(data_ptrs, j, num_arr_values) default(none)
+      !$omp target teams distribute parallel do private(i) shared(data_ptrs, j, num_arr_values) map(to:data_ptrs(j)) default(none)
       do i = 1, num_arr_values
          data_ptrs(j)%x(i) = data_ptrs(j)%a*data_ptrs(j)%x(i) + data_ptrs(j)%y(i)
       end do
@@ -49,8 +50,10 @@ program daxpy_type_ptrs
       !$omp target exit data map(from:data_ptrs(j)%y)
       !$omp target exit data map(from:data_ptrs(j))
 
-      print *, "x(1:10):", data_ptrs(j)%x(1:10)
-      print *, "y(1:10):", data_ptrs(j)%x(1:10)
+      print *, "----------"
+      print *, "after x(1:10,", j, ") ", data_ptrs(j)%x(1:10)
+      print *, "----------"
+
    end do
 !$omp end parallel do
 

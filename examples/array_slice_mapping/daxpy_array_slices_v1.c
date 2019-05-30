@@ -12,7 +12,7 @@ int main()
    double *x, *y;
 
    a = 5;
-   num_slices = 80;
+   num_slices = 10;
    num_values = 1024; // Make at least 10, since the first 10 values are printed later.
 
 	err = cudaHostAlloc((void**)&x, sizeof(foo) * num_values * num_slices, cudaHostAllocDefault );
@@ -49,7 +49,8 @@ int main()
 
    for (int j=0; j < num_slices; ++j)
 	{
-      #pragma openmp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) default(none)
+// Important note - The map statement must be repeated in the kernel in order to indicate which slice the kernel will access.
+      #pragma openmp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(to:x(j*num_slices:j*num_slices+num_values), y[j*num_slices:j*num_slices+num_values]) default none
       for (int i=0; i < num_values; ++i)
 		{
          x[j*num_values+i] = a * x[j*num_values+i] + y[j*num_values+i];

@@ -9,7 +9,7 @@ program daxpy_array_slices
    real, pinned, allocatable, dimension(:,:) :: x, y
 
    a = 5
-   num_slices = 80
+   num_slices = 10
    num_values = 1024
 
    allocate(x(num_values,num_slices))
@@ -25,7 +25,6 @@ program daxpy_array_slices
    do j = 1, num_slices
       print *, "----------"
       print *, "before x(1:10,", j, ") ", x(1:10,j)
-      print *, "before y(1:10,", j, ") ", y(1:10,j)
       print *, "----------"
 
 ! Map slice to GPU
@@ -37,7 +36,7 @@ program daxpy_array_slices
 
 ! Work on slice
 
-      !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) default(none)
+      !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(to:x(:,j), y(:,j)) default(none)
       do i = 1, num_values
          x(i,j) = a*x(i,j) + y(i,j)
       end do
@@ -52,7 +51,6 @@ program daxpy_array_slices
 
       print *, "----------"
       print *, "after x(1:10,", j, ") ", x(1:10,j)
-      print *, "after y(1:10,", j, ") ", y(1:10,j)
       print *, "----------"
    end do
 !$omp end parallel do
