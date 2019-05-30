@@ -1,4 +1,8 @@
-This example tests the capability to map or updates slices of an array to/from the GPU.
+These examples test the capability to map or updates slices of an array to/from the GPU.
+
+The XL compiler is able to do this fine with standalone arrays.
+
+If these arrays reside within a derived type ( struct ), then issues are encountered.
 
 Important note:
 When mapping over multiple sections of an array, it's important to also repeat the map of that slice in the OpenMP kernel pragmas.

@@ -1,11 +1,10 @@
-! This example maps over slices of an array to a GPU, then launch kernels that act on those slices.
-! All the slices are mapped up-front, before the kernel launches.
+! This example maps over an entire array to the GPU, then launches kernels to update sections of the array.
+! It uses target update on those sections as each kernel finishes.
 program daxpy_array_slices
-   use cudafor
    implicit none
 
    integer i, j, num_slices, num_values, a
-   real, pinned, allocatable, dimension(:,:) :: x, y
+   real, pointer, contiguous, dimension(:,:) :: x, y
 
    a = 5
    num_slices = 10
@@ -26,30 +25,28 @@ program daxpy_array_slices
       print *, "----------"
    end do
 
+   !$omp target data map(alloc:x, y)
+
    !$omp parallel do
    do j = 1, num_slices
-      !$omp target enter data map(to:x(:,j))
-      print *, "Mapped x(:,", j, ")"
-      !$omp target enter data map(to:y(:,j))
-      print *, "Mapped y(:,", j, ")"
-   end do
 
-  !$omp parallel do
-   do j = 1, num_slices
-      !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(to:x(:,j), y(:,j))  default(none)
+      !$omp target update to(x(:,j), y(:,j))
+
+! NOTE - not sure the additional map on the teams line is needed.  Added it so
+! the runtime knows that we've mapped over the array slice needed and to not
+! perform any implicit map of x or y.
+      !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(alloc:x(:,j), y(:,j)) default(none)
       do i = 1, num_values
          x(i,j) = a*x(i,j) + y(i,j)
       end do
       !$omp end target teams distribute parallel do
 
       print *, "Ran daxpy on slice ", j
+      !$omp target update from(x(:,j), y(:,j))
    end do
+   !$omp end parallel do
 
-  !$omp parallel do
-   do j = 1, num_slices
-      !$omp target exit data map(from:x(:,j))
-      !$omp target exit data map(from:y(:,j))
-   end do
+   !$omp end target data
 
    do j = 1, num_slices
       print *, "----------"

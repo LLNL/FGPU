@@ -2,68 +2,59 @@
 ! It uses target update on those sections as each kernel finishes.
 !
 ! This variant places the array inside a derived type.
-program daxpy_array_slices_in_type
-   use cudafor
+program map_array_slices_in_type
    implicit none
 
    integer i, j, num_slices, num_values, a
 
    type daxpy_data
       real, pointer, contiguous, dimension(:,:) :: x, y
-      integer :: a, b, c, d, e, f
-      real :: g, h, i, j, k, l
+      integer :: a, b, c, d, e, f = 1
+      real :: g, h, i, j, k, l = 1.0
    end type daxpy_data
-
    
-   type(daxpy_data) :: the_data
+   type(daxpy_data), pointer :: the_data
 
    a = 5
    num_slices = 10
    num_values = 1024
-
    
+   allocate(the_data)
    allocate(the_data%x(num_values,num_slices))
    allocate(the_data%y(num_values,num_slices))
 
    ! initialize arrays
+   print *, "----------"
    do j = 1, num_slices
       the_data%x(:,j) = DBLE(j)
       the_data%y(:,j) = DBLE(j)
-   end do
-
-   do j = 1, num_slices
-      print *, "----------"
       print *, "before x(1:10,", j, ") ", the_data%x(1:10,j)
-      print *, "----------"
    end do
+   print *, "----------"
 
-   !$omp target enter data map(to:the_data)
-   !$omp target enter data map(alloc:the_data%x)
-   !$omp target enter data map(alloc:the_data%y)
+   !$omp target data map(to:the_data)
 
    !$omp parallel do
    do j = 1, num_slices
 
-      !$omp target update to(the_data%x(:,j), the_data%y(:,j))
+! Map and work on slice
 
-      !$omp target teams distribute parallel do private(i) shared(a, the_data, j, num_values) default(none)
+      !$omp target teams distribute parallel do private(i) shared(a, the_data, j, num_values) map(tofrom:the_data%x(:,j)) map(to:the_data%y(:,j)) default(none)
       do i = 1, num_values
          the_data%x(i,j) = a*the_data%x(i,j) + the_data%y(i,j)
       end do
       !$omp end target teams distribute parallel do
 
       print *, "Ran daxpy on slice ", j
-      !$omp target update from(the_data%x(:,j), the_data%y(:,j))
+
    end do
+!$omp end parallel do
 
-   !$omp target exit data map(delete:the_data%x)
-   !$omp target exit data map(delete:the_data%y)
-   !$omp target exit data map(delete:the_data)
-
+!$omp end target data 
+   print *, "----------"
    do j = 1, num_slices
-      print *, "----------"
       print *, "after x(1:10,", j, ") ", the_data%x(1:10,j)
-      print *, "----------"
    end do
+   print *, "----------"
 
-end program daxpy_array_slices_in_type
+end program map_array_slices_in_type
