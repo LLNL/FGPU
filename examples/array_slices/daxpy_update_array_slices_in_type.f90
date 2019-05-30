@@ -56,11 +56,9 @@ program daxpy_array_slices_in_type
       !$omp target update from(the_data%x(:,j), the_data%y(:,j))
    end do
 
-   do j = 1, num_slices
-      !$omp target exit data map(delete:the_data%x)
-      !$omp target exit data map(delete:the_data%y)
-      !$omp target exit data map(delete:the_data)
-   end do
+   !$omp target exit data map(delete:the_data%x)
+   !$omp target exit data map(delete:the_data%y)
+   !$omp target exit data map(delete:the_data)
 
    do j = 1, num_slices
       print *, "----------"
