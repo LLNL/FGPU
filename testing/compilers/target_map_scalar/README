@@ -1,0 +1,2 @@
+ Example demonstrating that an explicit tofrom map of a scalar does not behave as expected.
+ The value 'x' is not mapped back to the CPU in the target data map tofrom clause.
