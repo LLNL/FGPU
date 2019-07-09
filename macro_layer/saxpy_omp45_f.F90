@@ -15,11 +15,11 @@ program testsaxpy_omp45_f
 
 OMP(target data map(to:N,a,x) map(tofrom: y))
 
-OMP(target teams distribute parallel do private(i) shared(y,a,x) default(none))
+OMP(OMP_TARGET OMP_TEAMS_DISTRIBUTE parallel do private(i) shared(y,a,x) default(none))
   do i=1,N
     y(i) = a*x(i) + y(i)
   end do
-OMP(end target teams distribute parallel do)
+OMP(end OMP_TARGET OMP_TEAMS_DISTRIBUTE parallel do)
 
 OMP(end target data)
 

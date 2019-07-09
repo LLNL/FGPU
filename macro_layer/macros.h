@@ -11,9 +11,30 @@
 ! If optional behavior is not enabled, OMP1 and OMP2 simply execute the OpenMP line.
 
 ! Uncomment to enable tracing.
+#define ENABLE_OMP
 #define ENABLE_OMP_TRACE_PRINTS
+#define ENABLE_OMP_TEAMS_DISTRIBUTE
+#define ENABLE_OMP_TARGET
 
-#if defined(ENABLE_OMP_MACRO)
+! Try to mitigate the performance impact of the target construct on CPU runtime.
+! Even if offloading disabled in compiler options, the presence of the targe
+! tends to slow down CPU threaded code.
+#if defined(ENABLE_OMP_TARGET)
+#  define OMP_TARGET target
+#else
+#  define OMP_TARGET
+#endif
+
+! Try to mitigate the performance impact of teams distribute constructs on CPU runtime.
+! Even if offloading disabled in compiler options, the presence of the teams distribute
+! tends to slow down CPU threaded code.
+#if defined(ENABLE_OMP_TEAMS_DISTRIBUTE)
+#  define OMP_TEAMS_DISTRIBUTE teams distribute
+#else
+#  define OMP_TEAMS_DISTRIBUTE
+#endif
+
+#if defined(ENABLE_OMP)
 #  define OMP(source) !$omp source
 
 #  if defined(ENABLE_OMP_TRACE_PRINTS)

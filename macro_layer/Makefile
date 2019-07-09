@@ -1,10 +1,10 @@
 FLINK = -L/usr/tce/packages/xl/xl-2019.02.07/xlf/16.1.1/lib -lxlf90_r -lxlcuf -lxlfmath
 
 xl_omp:
-	xlf_r -DENABLE_OMP_MACRO -qsmp=omp -qoffload -o test_xl_omp saxpy_omp45_f.F90
+	xlf_r -d -DENABLE_OMP_MACRO -qsmp=omp -qoffload -o test_xl_omp saxpy_omp45_f.F90
 
 xl:
-	xlf_r -o test_xl_omp saxpy_omp45_f.F90
+	xlf_r -d -o test_xl_omp saxpy_omp45_f.F90
 
 intel_omp:
 	ifort -DENABLE_OMP_MACRO -allow nofpp-comments -o test_intel_omp saxpy_omp45_f.F90
