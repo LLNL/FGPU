@@ -1,0 +1,4 @@
+Example testing the OpenMP capability to pair together a host and device pointer that was allocated outside of a map clause.
+
+-- Aaron Black
+black27@llnl.gov
