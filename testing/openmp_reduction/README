@@ -1,0 +1,20 @@
+This code example exhibits issues on the IBM Sierra platform if more than one CPU threads is used to launch the kernels.
+
+OMP_NUM_THREADS=10
+
+Issues:
+- code hangs
+
+- segmentation violation errors
+Example:
+  Signal received: SIGSEGV - Segmentation violation
+
+  Traceback:
+    Location 0x00002000011b372c
+    Location 0x000020000117ebb8
+    Location 0x00002000013a7c1c
+    Offset 0x00000188 in procedure __xl_main_l11_OL_1_OL_2, near line 16 in file Test.f90
+    Offset 0x00000100 in procedure __xl_main_l11_OL_1, near line 12 in file Test.f90
+
+Credit to:
+Jacob West
