@@ -25,6 +25,8 @@ subroutine looptest_cuda()
 
    type(SampleType) :: a_type
 
+   call __xlcuf_init()
+
 	istat = cudaStreamCreate(a_type%stream)
 
 	istat = cudaforSetDefaultStream(a_type%weight, a_type%stream)

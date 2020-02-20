@@ -1,0 +1,1 @@
+Testing out cuda vs omp45 performance on a simple loop algorithm, with derived types
