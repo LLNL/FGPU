@@ -1,0 +1,3 @@
+This example demonstrates that you can using a common pointer to point to different data, and maps using that pointer will function.
+
+Be careful not the change the shape or offset of your pointer, this will only work if all structures mapped with this pointer are the same format ( size, shape, etc ).
