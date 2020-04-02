@@ -1,0 +1,2 @@
+These examples demonstrate what can happen if you perform an OpenMP data map of local variables to the GPU, and don't unmap them before they go out of scope.
+This includes orphaned map entries that can occur when you use locally declared pointers to data.
