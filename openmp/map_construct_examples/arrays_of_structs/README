@@ -1,0 +1,6 @@
+Example of common data structure hierarchy at LLNL.
+
+Some codes use highly nested data structures, with:
+- arrays of structs holding further arrays, etc.
+
+These need to be mapped to/from the GPU.
