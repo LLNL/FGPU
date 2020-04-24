@@ -1,0 +1,6 @@
+Example testing the OpenMP capability to pair together a host and device pointer that was allocated outside of a map clause.
+This version tests a multidimension FORTRAN array and is also marked up with NVIDIA NVTX timers for use in the NVIDIA NVVP profiler tool.
+A couple PNG files are included to demonstrate how the overhead of copying the FORTRAN array shape info slows down the FORTRAN version.
+
+-- Aaron Black
+black27@llnl.gov
