@@ -1,0 +1,7 @@
+This example demonstrates that there can be significant overhead when using derived types with type-bound procedures on the GPU. 
+
+A simple derived type that contains an allocatable array is created in base_type.f. This derived type includes type-bound procedures to allocate and deallocate the array. Array allocation and target offloading is performed in setup.f. 
+
+operations.f contains two (almost) identical subroutines that multiply an external variable and the array allocated inside the derived type. The only two difference between the two multiplication subroutines is that multiplication_b is used as a type-bound procedure. 
+
+Main.f then calls the two multiplication subroutines multiple times. The difference in the output is clear when examining the results of the Nvidia Visual Profiler. An example output is shown in derived_types_openmp.png.
