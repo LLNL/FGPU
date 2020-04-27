@@ -49,7 +49,7 @@ POP_RANGE();
 	}
 
 PUSH_RANGE("C_target_update_to",3);
-   #pragma omp target update to(x[0:N],y[0,N])
+   #pragma omp target update to(x[0:N],y[0:N])
 POP_RANGE();
 
 // Clear y on host
