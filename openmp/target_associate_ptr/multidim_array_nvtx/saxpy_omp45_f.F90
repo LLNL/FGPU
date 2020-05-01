@@ -92,7 +92,7 @@ module openmp_device_memory_routines
         integer(c_int), value :: device_num
       end subroutine omp_target_free
 
-      integer (c_int) function omp_target_associate_ptr( h_ptr, d_ptr, num_bytes, offset, device_num) bind(c, name='omp_target_associate_ptr')
+      integer (c_int) function omp_target_associate_ptr( h_ptr, d_ptr, num_bytes, offset, device_num) bind ( c, name= 'omp_target_associate_ptr' )
         use iso_c_binding
         implicit none
 
@@ -101,7 +101,7 @@ module openmp_device_memory_routines
         integer(c_int), value :: device_num
       end function omp_target_associate_ptr
 
-      integer (c_int) function omp_target_disassociate_ptr( h_ptr, device_num) bind(c, name='omp_target_disassociate_ptr')
+      integer (c_int) function omp_target_disassociate_ptr( h_ptr, device_num) bind ( c, name= 'omp_target_disassociate_ptr' )
         use iso_c_binding
         implicit none
 
@@ -117,20 +117,19 @@ subroutine testsaxpy_omp45_f
 
   use iso_c_binding
   use omp_lib
-!  use cudafor
   use openmp_device_memory_routines
   use nvtx_bindings_mod
-
   implicit none
+
   integer :: N = 100
   integer :: i, j, k, err
+  real(c_double) :: a = 2.0
  
   real(c_double), pointer :: x(:,:,:), y(:,:,:)
   type(c_ptr) :: x_cptr, y_cptr
   integer(c_size_t) :: num_bytes, offset
-  real(c_double) :: a = 2.0
 
-  call nvtxPushRange("FORTRAN_KERNEL", 6)
+  call nvtxPushRange("FORTRAN", 6)
 
   !$omp target enter data map(to:N,a)
 
@@ -174,7 +173,7 @@ subroutine testsaxpy_omp45_f
   do k=1,N
     do j=1,N
       do i=1,N
-      y(i,j,k) = a*x(i,j,k) + y(i,j,k)
+        y(i,j,k) = a*x(i,j,k) + y(i,j,k)
       end do
      end do
   end do
