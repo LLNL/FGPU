@@ -92,7 +92,7 @@ module openmp_device_memory_routines
         integer(c_int), value :: device_num
       end subroutine omp_target_free
 
-      integer (c_int) function omp_target_associate_ptr( h_ptr, d_ptr, num_bytes, offset, device_num)
+      integer (c_int) function omp_target_associate_ptr( h_ptr, d_ptr, num_bytes, offset, device_num) bind(c, name='omp_target_associate_ptr')
         use iso_c_binding
         implicit none
 
@@ -101,7 +101,7 @@ module openmp_device_memory_routines
         integer(c_int), value :: device_num
       end function omp_target_associate_ptr
 
-      integer (c_int) function omp_target_disassociate_ptr( h_ptr, device_num)
+      integer (c_int) function omp_target_disassociate_ptr( h_ptr, device_num) bind(c, name='omp_target_disassociate_ptr')
         use iso_c_binding
         implicit none
 
@@ -117,7 +117,7 @@ subroutine testsaxpy_omp45_f
 
   use iso_c_binding
   use omp_lib
-  use cudafor
+!  use cudafor
   use openmp_device_memory_routines
   use nvtx_bindings_mod
 

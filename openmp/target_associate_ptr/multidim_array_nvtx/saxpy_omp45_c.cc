@@ -8,6 +8,20 @@
 #include "macros.h"
 
 #define USE_CUSTOM_MAP
+/*
+extern "C"
+{
+  int omp_target_associate_ptr_(const void *host_ptr, const void *device_ptr, size_t size, size_t device_offset, int device_num)
+  {
+    return omp_target_associate_ptr((void*)host_ptr,(void*)device_ptr,size,device_offset,device_num);
+  };
+  int omp_target_disassociate_ptr_(const void *ptr, int device_num)
+  {
+    return  omp_target_disassociate_ptr((void*)ptr,device_num);
+  };
+
+};
+*/
 
 void testsaxpy_omp45_c()
 {
@@ -49,7 +63,7 @@ POP_RANGE();
 	}
 
 PUSH_RANGE("C_target_update_to",3);
-   #pragma omp target update to(x[0:N],y[0,N])
+   #pragma omp target update to(x[0:N],y[0:N])
 POP_RANGE();
 
 // Clear y on host
@@ -67,7 +81,7 @@ PUSH_RANGE("C_daxpy_kernel",4);
 POP_RANGE();
 
 PUSH_RANGE("C_target_update_from",5);
-   #pragma omp target update from(y[0,N])
+   #pragma omp target update from(y[0:N])
 POP_RANGE();
 
 #if defined(USE_CUSTOM_MAP)

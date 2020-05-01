@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
    {
 		for (int j = 0; j < iters; ++j)
       {
-		  testsaxpy_omp45_c();
+  		  testsaxpy_omp45_c();
         testsaxpy_omp45_f_();
 	   }
    }
