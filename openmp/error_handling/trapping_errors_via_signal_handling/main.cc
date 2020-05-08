@@ -5,7 +5,7 @@
  
 extern "C" void sub1_f();
 
-void xl__trce(int, siginfo_t *, void *);
+extern "C" void xl__trce(int, siginfo_t *, void *);
  
 void register_xl_sigtrap_handler()
 {

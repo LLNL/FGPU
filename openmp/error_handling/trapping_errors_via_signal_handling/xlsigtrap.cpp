@@ -1,10 +1,10 @@
-# Standalone example of registering a signal handler on SIERRA.
-# Requires linking in correct library iwth xl__trce.
+// Standalone example of registering a signal handler on SIERRA.
+// Requires linking in correct library iwth xl__trce.
 
 #include <stddef.h> // for NULL
 #include <signal.h>
  
-void xl__trce(int, siginfo_t *, void *);
+extern "C" void xl__trce(int, siginfo_t *, void *);
  
 void register_xl_sigtrap_handler()
 {
