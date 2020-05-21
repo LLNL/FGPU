@@ -1,0 +1,3 @@
+This example tests mapping a pointer that has been passed through a subroutines.
+The runtime should recognize that the data has already mapped increment the ref count.
+The runtime should only need to map the 'dope pointer' once, even though there is no guarentee on whether the pointer was passed in by value or reference to the subroutine.
