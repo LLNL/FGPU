@@ -48,7 +48,7 @@ program fmain
    allocate(type1_ptr)
    call initialize(len)
 
-   write(*,*) "\nOn host, before map to."
+   write(*,*) "\nOn host, before mapping data to device."
 
    write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
@@ -85,6 +85,7 @@ program fmain
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
+   write(*,*) "(next two should be unchanged)"
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 !$omp end target 
@@ -103,6 +104,7 @@ program fmain
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
+   write(*,*) "(next two should be unchanged)"
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 
