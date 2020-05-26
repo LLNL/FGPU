@@ -100,11 +100,12 @@ program fmain
 !$omp target exit data map(from:type1_ptr)
 
    write(*,*) "\nOn host, after map back."
+   write(*,*) "These should be 10."
    write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
-   write(*,*) "(next two should be unchanged)"
+   write(*,*) "Next two should be unchanged"
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 
