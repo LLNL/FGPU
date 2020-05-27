@@ -81,7 +81,7 @@ program fmain
    type1_ptr%type2_arr(1)%simple_arr(1) = 10.0
 
    write(*,*) "\nIn device, after assignments."
-   write(*,*) "type1%x", type1_ptr%x
+   write(*,*) "type1%x", type1_ptr%x, " <- type1_ptr%x should now be 10.0000000 on the device."
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
@@ -97,11 +97,12 @@ program fmain
 
 !$omp target exit data map(from:type1_ptr%type2_arr)
 !$omp target exit data map(from:type1_ptr%simple_arr)
+write(*,*) "Calling target exit data map on type1_ptr.  This should decrement ref count to 0 and map back type1_ptr%x ( a float )."
 !$omp target exit data map(from:type1_ptr)
 
    write(*,*) "\nOn host, after map back."
    write(*,*) "These should be 10."
-   write(*,*) "type1%x", type1_ptr%x
+   write(*,*) "type1%x", type1_ptr%x, " <- this should be 10.00000"
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
