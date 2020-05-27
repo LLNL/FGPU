@@ -1,0 +1,6 @@
+This code example shows the complicated two-step link required on the DOE SIERRA platform when using both CUDA and OpenMP kernels in C++ and FORTRAN.
+
+NOTE - This combination of compilers does not allow both C OpenMP GPU kernels and FORTRAN OpenMP GPU kernels to run.  The CLANG and XL OpenMP GPU runtimes are not compatible.
+
+-- Aaron Black
+black27@llnl.gov
