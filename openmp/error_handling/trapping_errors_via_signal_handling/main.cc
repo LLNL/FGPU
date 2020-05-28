@@ -1,9 +1,10 @@
-// Standalone example of registering a signal handler on SIERRA.
-// Requires linking in correct library iwth xl__trce.
-
 #include <stddef.h> // for NULL
 #include <signal.h>
+#include <iostream>
+#include "omp.h"
  
+extern "C" void sub1_f();
+
 extern "C" void xl__trce(int, siginfo_t *, void *);
  
 void register_xl_sigtrap_handler()
@@ -17,6 +18,16 @@ void register_xl_sigtrap_handler()
 
 int main()
 {
+   int nThreads = 1;
 	register_xl_sigtrap_handler();
-	// ...
+
+   std::cout << "Num threads: " << nThreads << std::endl;
+
+   #pragma omp parallel for num_threads(nThreads)
+   for (int i = 0; i < nThreads; ++i)
+   {
+      sub1_f();
+   }
+
+	return (0);
 }

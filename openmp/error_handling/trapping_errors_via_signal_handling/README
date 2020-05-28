@@ -1,0 +1,94 @@
+One of the challenges of debugging OpenMP runtime errors is that the standard does not provide an API for checking for runtime errors, or a mechanism for getting an error code or handling an error in code.
+
+For the DOE SIERRA machine, IBM provides some ability to intercept and react to OpenMP runtime errors.
+- The OpenMP runtime can emit a signal when an error occurs.
+- The XL FORTRAN compiler provides some signal handlers that can print out a backtrace to locate the OpenMP code that issued the error.
+- For C codes, the code can register its own signal handler to catch and handle the signal.
+
+1. Backtraces for all messages from the OpenMP runtime (LOMP)
+
+IBM has the option to enable backtracing from the OpenMP runtime. The backtraces will be emitted for all messages, including warnings. To enable backtraces, set the MSG_BACKTRACE environment variable. For example,
+export XLSMPOPTS=MSG_BACKTRACE
+
+Limitation: To avoid dependencies on other compiler libraries, this method provides tracebacks using glibc's backtrace APIs. The tracebacks contain object names and code addresses only, not source file names or line numbers. That information can be obtained from gdb by entering the reported address into gdb.
+
+$ export XLSMPOPTS=MSG_BACKTRACE
+$ ./test_fortran
+/opt/ibm/lib/libxlsmp.so.1(+0x118b00) [0x3fff95528b00]
+/opt/ibm/lib/libxlsmp.so.1(+0xa3c4c) [0x3fff954b3c4c]
+/opt/ibm/lib/libxlsmp.so.1(+0x6ebbc) [0x3fff9547ebbc]
+/opt/ibm/lib/libxlsmp.so.1(__tgt_target+0x228) [0x3fff956a69f8]
+./test_fortran() [0x10000d14]
+./test_fortran() [0x10001098]
+./test_fortran() [0x10001100]
+/lib64/libc.so.6(+0x25100) [0x3fff94675100]
+/lib64/libc.so.6(__libc_start_main+0xc4) [0x3fff946752f4]
+1587-164 Encountered a zero-length array section that points to memory starting at address 0x3fffcfbdcc60. Because this memory is not currently mapped on the target device 0, a NULL pointer will be passed to the device.
+
+bye
+$ gdb ./test_fortran
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-115.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law. Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "ppc64le-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /scratch/rzurob/a.out...done.
+(gdb) b *0x10000d14
+Breakpoint 1 at 0x10000d14: file test_fortran.f90, line 11.
+(gdb)
+
+
+2. SIGTRAP signals for all messages from the OpenMP runtime (LOMP)
+
+The idea here is to raise a SIGTRAP signal for all OpenMP runtime messages. The user can then register a signal handler that can give tracebacks or any other information the user wants. XL Fortran already ships with signal handlers that will give tracebacks, including line number information when the file is compiled with -g (full debug) or -g1 (line number information only). XL Fortran has signal handlers that will stop the program after emitting the tracebacks, as well as others that will continue the program after emitting the traceback. If main() is compiled with XL Fortran, the user can use the -qsigtrap option to register the signal handler without modifying the source code. If main() is written in another language like C/C++, the user has to use signal() or sigaction() to register the signal handler.
+
+If you register a signal handler for the SIGTRAP signal, for example using the -qsigtrap option in XL Fortran, you'll get a traceback that contains function names, file names, and line number information (since we compiled with -g1).
+
+Limitation: If you enable -qcheck, we also raise SIGTRAP signals for things like arrays that are accessed out of bounds or variables that are used before they are defined. In such cases, the xl__trce signal handler that stops the program is the appropriate handler to use.
+
+$ export XLSMPOPTS=MSG_TRAP
+$ ./test_fortran_sigtrap
+
+Signal received: SIGTRAP - Trace trap
+
+Traceback:
+Location 0x00003fff8b175328
+Location 0x00003fff8bd58cf0
+Location 0x00003fff8bce3cdc
+Location 0x00003fff8bcaebf8
+Location 0x00003fff8bed68a4
+Offset 0x00000090 in procedure sub2, near line 9 in file test_fortran_sigtrap.f90
+Offset 0x00000014 in procedure sub1, near line 17 in file test_fortran_sigtrap.f90
+Offset 0x00000054 in procedure main, near line 21 in file test_fortran_sigtrap.f90
+Location 0x00003fff8aea50fc
+Location 0x00003fff8aea52f0
+--- End of call chain ---
+$
+
+The default signal handler (xl__trce) registered by -qsigtrap exits the program after giving the traceback. XL Fortran also provides another signal handler (xl__sigdump) that will continue the program after displaying the traceback:
+
+$ export XLSMPOPTS=MSG_TRAP
+$ ./test_fortran_sigdump
+
+Signal received: SIGTRAP - Trace trap
+
+Traceback:
+Location 0x00003fffa9095328
+Location 0x00003fffa9c78cf0
+Location 0x00003fffa9c03cdc
+Location 0x00003fffa9bcebf8
+Location 0x00003fffa9df68a4
+Offset 0x00000090 in procedure sub2, near line 9 in file test_fortran.f90
+Offset 0x00000014 in procedure sub1, near line 17 in file test_fortran.f90
+Offset 0x00000054 in procedure main, near line 21 in file test_fortran.f90
+Location 0x00003fffa8dc50fc
+Location 0x00003fffa8dc52f0
+--- End of call chain ---
+1587-164 Encountered a zero-length array section that points to memory starting at address 0x3fffec71c570. Because this memory is not currently mapped on the target device 0, a NULL pointer will be passed to the device.
+
+bye
+$
