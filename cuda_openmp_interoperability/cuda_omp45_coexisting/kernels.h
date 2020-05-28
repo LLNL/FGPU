@@ -1,6 +1,5 @@
 // In saxpy.cuf
-extern "C" void testsaxpy_cudafortran();
-
+//extern "C" void testsaxpy_cudafortran();
 // In saxpy.cu
 void testSaxpy_cudac(void);
 
