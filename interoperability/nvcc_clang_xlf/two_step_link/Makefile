@@ -16,7 +16,6 @@ xl_libs = -L$(xlroot)/alllibs \
   -lomptarget-nvptx \
   -lxlsmp \
   -lxldevice \
-  -lxlcufdevice \
   -lxlf90_r \
   -lxlfmath \
   -libmc++ \
