@@ -1,38 +1,41 @@
 module example
    use iso_c_binding
 
-  type, public :: type2
-    real(C_DOUBLE)              :: x
-    real(C_DOUBLE), pointer     :: simple_arr(:,:,:)
-  end type type2
+  type, public :: typeS
+    real(C_DOUBLE)                            :: double
+    real(C_DOUBLE), pointer, dimension(:) :: double_array
+  end type typeS
 
-  type, public :: type1
-    real(C_DOUBLE)              :: x
-    real(C_DOUBLE), pointer     :: simple_arr(:,:,:)
-    type(type2), pointer :: type2_arr(:)
-  end type type1
+  type, public :: typeG
+    real(C_DOUBLE)                        :: double
+    real(C_DOUBLE), pointer, dimension(:) :: double_array
+  end type typeG
 
-  type(type1), pointer, public :: type1_ptr
+  type, public :: typeQ
+    real(C_DOUBLE)                        :: double
+    real(C_DOUBLE), pointer, dimension(:) :: double_array
+    type(typeS), pointer, dimension(:)    :: s_array
+    type(typeG), pointer, dimension(:)    :: g_array
+  end type typeQ
+
+  type(typeQ), pointer, public :: typeQ_ptr
 
   contains
 
-    subroutine initialize(len)
+    subroutine initialize()
       implicit none
-      integer, intent(in) :: len
       integer :: n
 
-      type1_ptr%x = 1.0
+      allocate(typeQ_ptr)
+      allocate(typeQ_ptr%double_array(10))
 
-      allocate(type1_ptr%simple_arr(2,2,2))
-      type1_ptr%simple_arr = 1.0
+      allocate(typeQ_ptr%s_array(2))
+      allocate(typeQ_ptr%g_array(2))
 
-      allocate(type1_ptr%type2_arr(len))
-
-      do n=1,len
-        type1_ptr%type2_arr(n)%x = 2.0
-        allocate(type1_ptr%type2_arr(n)%simple_arr(2,2,2))
-        type1_ptr%type2_arr(n)%simple_arr = 2.0
-      end do
+      do n=1,2
+         allocate(typeQ_ptr%s_array(n)%double_array(5))
+         allocate(typeQ_ptr%g_array(n)%double_array(5))
+      enddo
 
     end subroutine initialize
 
@@ -42,88 +45,124 @@ end module example
 program fmain
    use example
    use openmp_tools
-	use iso_c_binding
+   use iso_c_binding
 
    implicit none
-   integer :: n, len
-	logical(C_BOOL) :: use_external_allocator
+   integer :: i,n
+   logical(C_BOOL) :: use_external_allocator
 
-	use_external_allocator = .FALSE.
-   len = 5
-   allocate(type1_ptr)
-   call initialize(len)
+   use_external_allocator = .TRUE.
 
-   write(*,*) "\nOn host, before map to."
+   call initialize()
 
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1,1,1)", type1_ptr%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1,1,1)", type1_ptr%type2_arr(1)%simple_arr(1,1,1)
+   do i = 1, 5
+      write(*,*) "------------- ITERATION ", i, " ----------------"
+      typeQ_ptr%double =  i
+      typeQ_ptr%double_array =  i
 
-!$omp target enter data map(to:type1_ptr)
+      do n=1,2
+         typeQ_ptr%s_array(n)%double = i
+         typeQ_ptr%s_array(n)%double_array = i
 
-!   call map_alloc(type1_ptr%simple_arr, use_external_allocator)
-!   !$omp target update to(type1_ptr%simple_arr)
-!$omp target enter data map(to:type1_ptr%simple_arr)
+         typeQ_ptr%g_array(n)%double = i
+         typeQ_ptr%g_array(n)%double_array = i
+      enddo
 
-!$omp target enter data map(to:type1_ptr%type2_arr)
+      write(*,*) "\nOn host, before mapping to GPU."
 
-   do n=1,len
-      !$omp target enter data map(to:type1_ptr%type2_arr(n))
+      write(*,*) "typeQ_ptr%double", typeQ_ptr%double
+      write(*,*) "typeQ_ptr%double_array", typeQ_ptr%double_array
 
-!      call map_alloc(type1_ptr%type2_arr(n)%simple_arr, use_external_allocator)
-!      !$omp target update to(type1_ptr%type2_arr(n)%simple_arr)
+      write(*,*) "typeQ_ptr%s_array(1)%double", typeQ_ptr%s_array(1)%double
+      write(*,*) "typeQ_ptr%s_array(1)%double_array", typeQ_ptr%s_array(1)%double_array
+      write(*,*) "typeQ_ptr%s_array(2)%double", typeQ_ptr%s_array(2)%double
+      write(*,*) "typeQ_ptr%s_array(2)%double_array", typeQ_ptr%s_array(2)%double_array
 
-		!$omp target enter data map(to:type1_ptr%type2_arr(n)%simple_arr)
-   end do
+      write(*,*) "typeQ_ptr%g_array(1)%double", typeQ_ptr%g_array(1)%double
+      write(*,*) "typeQ_ptr%g_array(1)%double_array", typeQ_ptr%g_array(1)%double_array
+      write(*,*) "typeQ_ptr%g_array(2)%double", typeQ_ptr%g_array(2)%double
+      write(*,*) "typeQ_ptr%g_array(2)%double_array", typeQ_ptr%g_array(2)%double_array
 
-!$omp target
-   write(*,*) "\nOn device, before assignments."
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1,1,1)", type1_ptr%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1,1,1)", type1_ptr%type2_arr(1)%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1,1,1)", type1_ptr%type2_arr(2)%simple_arr(1,1,1)
+      ! Map over 'Q' derived type
+      !$omp target enter data map(to:typeQ_ptr)
+      call map_to(typeQ_ptr%double_array, use_external_allocator)
 
-   type1_ptr%x = 10.0
-   type1_ptr%simple_arr(1,1,1) = 10.0
-   type1_ptr%type2_arr(1)%x = 10.0
-   type1_ptr%type2_arr(1)%simple_arr(1,1,1) = 10.0
+      ! Map over array of 'S' derived types in Q
+      !$omp target enter data map(to:typeQ_ptr%s_array)
+      !$omp target enter data map(to:typeQ_ptr%s_array(1))
+      call map_to(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+      !$omp target enter data map(to:typeQ_ptr%s_array(2))
+      call map_to(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+ 
+      ! Map over array of 'G' derived types in Q
+      !$omp target enter data map(to:typeQ_ptr%g_array)
+      !$omp target enter data map(to:typeQ_ptr%g_array(1))
+      call map_to(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
+      !$omp target enter data map(to:typeQ_ptr%g_array(2))
+      call map_to(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
 
-   write(*,*) "\nIn device, after assignments."
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1,1,1)", type1_ptr%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1,1,1)", type1_ptr%type2_arr(1)%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1,1,1)", type1_ptr%type2_arr(2)%simple_arr(1,1,1)
-!$omp end target 
+      !$omp target
+      write(*,*) "\nOn device, after mapping to GPU"
 
-   do n=1,len
-!      !$omp target update from(type1_ptr%type2_arr(n)%simple_arr)
-!      call map_delete(type1_ptr%type2_arr(n)%simple_arr, use_external_allocator)
+      write(*,*) "typeQ_ptr%double", typeQ_ptr%double
+      write(*,*) "typeQ_ptr%double_array", typeQ_ptr%double_array
 
-		!$omp target exit data map(from:type1_ptr%type2_arr(n)%simple_arr)
-      !$omp target exit data map(from:type1_ptr%type2_arr(n))
-   end do
+      write(*,*) "typeQ_ptr%s_array(1)%double", typeQ_ptr%s_array(1)%double
+      write(*,*) "typeQ_ptr%s_array(1)%double_array", typeQ_ptr%s_array(1)%double_array
+      write(*,*) "typeQ_ptr%s_array(2)%double", typeQ_ptr%s_array(2)%double
+      write(*,*) "typeQ_ptr%s_array(2)%double_array", typeQ_ptr%s_array(2)%double_array
 
-!$omp target exit data map(from:type1_ptr%type2_arr)
+      write(*,*) "typeQ_ptr%g_array(1)%double", typeQ_ptr%g_array(1)%double
+      write(*,*) "typeQ_ptr%g_array(1)%double_array", typeQ_ptr%g_array(1)%double_array
+      write(*,*) "typeQ_ptr%g_array(2)%double", typeQ_ptr%g_array(2)%double
+      write(*,*) "typeQ_ptr%g_array(2)%double_array", typeQ_ptr%g_array(2)%double_array
 
-!   !$omp target update from(type1_ptr%simple_arr)
-!   call map_delete(type1_ptr%simple_arr, use_external_allocator)
+      typeQ_ptr%double =  0
+      typeQ_ptr%double_array =  0
 
-!$omp target exit data map(from:type1_ptr%simple_arr)
-!$omp target exit data map(from:type1_ptr)
+      do n=1,2
+         typeQ_ptr%s_array(n)%double = 0
+         typeQ_ptr%s_array(n)%double_array = 0
 
-   write(*,*) "\nOn host, after map back."
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1,1,1)", type1_ptr%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1,1,1)", type1_ptr%type2_arr(1)%simple_arr(1,1,1)
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1,1,1)", type1_ptr%type2_arr(2)%simple_arr(1,1,1)
+         typeQ_ptr%s_array(n)%double = 0
+         typeQ_ptr%s_array(n)%double_array = 0
+      enddo
+      !$omp end target
+
+
+      ! Map back array of 'S' derived types in Q
+      call map_exit(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+      !$omp target exit data map(from:typeQ_ptr%s_array(1))
+      call map_exit(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+      !$omp target exit data map(from:typeQ_ptr%s_array(2))
+      !$omp target exit data map(from:typeQ_ptr%s_array)
+ 
+      ! Map back array of 'G' derived types in Q
+      call map_exit(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
+      !$omp target exit data map(from:typeQ_ptr%g_array(1))
+      call map_exit(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
+      !$omp target exit data map(from:typeQ_ptr%g_array(2))
+      !$omp target exit data map(from:typeQ_ptr%g_array)
+
+      ! Map back 'Q' derived type
+      call map_exit(typeQ_ptr%double_array, use_external_allocator)
+      !$omp target exit data map(from:typeQ_ptr)
+      
+      write(*,*) "\nOn host, after mapping from GPU."
+
+      write(*,*) "typeQ_ptr%double", typeQ_ptr%double
+      write(*,*) "typeQ_ptr%double_array", typeQ_ptr%double_array
+
+      write(*,*) "typeQ_ptr%s_array(1)%double", typeQ_ptr%s_array(1)%double
+      write(*,*) "typeQ_ptr%s_array(1)%double_array", typeQ_ptr%s_array(1)%double_array
+      write(*,*) "typeQ_ptr%s_array(2)%double", typeQ_ptr%s_array(2)%double
+      write(*,*) "typeQ_ptr%s_array(2)%double_array", typeQ_ptr%s_array(2)%double_array
+
+      write(*,*) "typeQ_ptr%g_array(1)%double", typeQ_ptr%g_array(1)%double
+      write(*,*) "typeQ_ptr%g_array(1)%double_array", typeQ_ptr%g_array(1)%double_array
+      write(*,*) "typeQ_ptr%g_array(2)%double", typeQ_ptr%g_array(2)%double
+      write(*,*) "typeQ_ptr%g_array(2)%double_array", typeQ_ptr%g_array(2)%double_array
+
+   enddo
 
 end program fmain
