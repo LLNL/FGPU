@@ -45,11 +45,11 @@ module openmp_tools
 
 contains
 
-   subroutine map_alloc(h_ptr, use_external_device_allocator)
+   subroutine map_to(h_ptr, use_external_device_allocator)
       use iso_c_binding
       implicit none
 
-      real(C_DOUBLE), pointer, intent(in) :: h_ptr(:,:,:)
+      real(C_DOUBLE), pointer, intent(in) :: h_ptr(:)
       logical(C_BOOL), intent(in) :: use_external_device_allocator
 
       real(C_DOUBLE) :: dummy_var
@@ -77,23 +77,27 @@ contains
          !$omp target
          write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
          !$omp end target
+         
+         !$omp target update to(h_ptr)
       else
-         !$omp target enter data map(alloc:h_ptr)
+         !$omp target enter data map(to:h_ptr)
       endif
       
-   end subroutine map_alloc
+   end subroutine map_to
 
 
-   subroutine map_delete(h_ptr, use_external_device_allocator)
+   subroutine map_exit(h_ptr, use_external_device_allocator)
       use iso_c_binding
       implicit none
-		real(C_DOUBLE), pointer, intent(in) :: h_ptr(:,:,:)
+		real(C_DOUBLE), pointer, intent(in) :: h_ptr(:)
       logical(C_BOOL), intent(in) :: use_external_device_allocator
 
       type(C_PTR) :: d_ptr
       integer :: err
 
       if (use_external_device_allocator) then
+         !$omp target update from(h_ptr)
+         
          !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
@@ -105,9 +109,9 @@ contains
       
          call omp_target_free( d_ptr, omp_get_default_device() )
       else
-         !$omp target exit data map (delete:h_ptr)
+         !$omp target exit data map (from:h_ptr)
       endif
 
-   end subroutine map_delete
+   end subroutine map_exit
 
 end module openmp_tools
