@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
 
-   int request = MPI_THREAD_MULTIPLE;
+   int request = MPI_THREAD_SINGLE;
    int provided;
 
    if ( MPI_Init_thread(&argc,&argv,request, &provided) != MPI_SUCCESS )                                                                                                                                
@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
       MPI_Barrier(MPI_COMM_WORLD);
    }
    MPI_Barrier(MPI_COMM_WORLD);
+
+	MPI_Finalize();
 
 	return (0);
 }

@@ -124,8 +124,8 @@ program fmain
          typeQ_ptr%s_array(n)%double = 0
          typeQ_ptr%s_array(n)%double_array = 0
 
-         typeQ_ptr%s_array(n)%double = 0
-         typeQ_ptr%s_array(n)%double_array = 0
+         typeQ_ptr%g_array(n)%double = 0
+         typeQ_ptr%g_array(n)%double_array = 0
       enddo
       !$omp end target
 
