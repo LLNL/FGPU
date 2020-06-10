@@ -5,5 +5,5 @@ extern "C" void testsaxpy_cudafortran();
 void testSaxpy_cudac(void);
 
 // In saxpy.c
-void testsaxpy_omp45(void);
+void testdaxpy_omp45(void);
 

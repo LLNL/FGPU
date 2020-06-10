@@ -35,7 +35,7 @@ void testSaxpy_cudac(void)
   float maxError = 0.0f;
   for (int i = 0; i < N; i++)
     maxError = max(maxError, abs(y[i]-4.0f));
-  printf(" Ran CUDA C kernel.  Max error: %f\n", maxError);
+  printf("-- Ran CUDA C kernel.  Max error: %f\n", maxError);
 
   cudaFree(d_x);
   cudaFree(d_y);
