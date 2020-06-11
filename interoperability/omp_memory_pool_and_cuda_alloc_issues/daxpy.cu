@@ -20,6 +20,8 @@ void testDaxpy_cudac(void)
   x = (double*)malloc(N*sizeof(double));
   y = (double*)malloc(N*sizeof(double));
 
+// This issue occurs with either CUDA or OMP call to allocate device memory.
+/*
   d_x = (double*)omp_target_alloc(N*sizeof(double), omp_get_default_device());
   if (d_x == NULL)
   {
@@ -33,9 +35,9 @@ void testDaxpy_cudac(void)
     printf("-- CUDA C kernel failed to allocate device memory.\n");
     exit(1);
   }
-
-//  cudaMalloc(&d_x, N*sizeof(double)); 
-//  cudaMalloc(&d_y, N*sizeof(double));
+*/
+  cudaMalloc(&d_x, N*sizeof(double)); 
+  cudaMalloc(&d_y, N*sizeof(double));
 
   status = cudaMemGetInfo(&free_bytes, &total_bytes);
   printf("In CUDA C kernel: GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total_bytes-free_bytes)/1048576.0, (double)free_bytes/1048576.0);
@@ -58,12 +60,13 @@ void testDaxpy_cudac(void)
     maxError = max(maxError, abs(y[i]-4.0));
   printf("-- Ran CUDA C kernel.  Max error: %f\n", maxError);
 
-//  cudaFree(d_x);
-//  cudaFree(d_y);
+  cudaFree(d_x);
+  cudaFree(d_y);
 
+/*
   omp_target_free(d_x, omp_get_default_device());
   omp_target_free(d_y, omp_get_default_device());
-
+*/
   free(x);
   free(y);
 }

@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include "kernels.h"
+#include "cuda_runtime_api.h"
 
 void testdaxpy_omp45()
 {
 	size_t N = 12* 1<<26; // About 12GB
    int a = 2.0f;
+   size_t free_bytes = 0, total_bytes = 0;
+   cudaError_t status;
 
 	double *x_ptr, *y_ptr;
 	x_ptr = (double*) malloc( N*sizeof(double) );
@@ -19,6 +22,8 @@ void testdaxpy_omp45()
 	}
  	
    #pragma omp target enter data map(to:N,a,x_ptr[:N], y_ptr[:N])
+   status = cudaMemGetInfo(&free_bytes, &total_bytes);
+   printf("In C OpenMP kernel run: GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total_bytes-free_bytes)/1048576.0, (double)free_bytes/1048576.0);
 
    #pragma omp target teams distribute parallel for
    for (int i = 0; i < N; ++i)
@@ -34,6 +39,9 @@ void testdaxpy_omp45()
 		maxError = fmax(maxError, fabs(y_ptr[i]-4.0f));
 	}
 	
+	printf("-- Ran C OMP45 kernel.  Max error: %f\n", maxError);
+	
 	free(x_ptr);
 	free(y_ptr);
+
 }

@@ -2,38 +2,46 @@
 #include <iostream>
 #include "omp.h"
 #include "kernels.h"
-#include "cuda_runtime_api.h"
-#include "omp.h"
-
-extern "C" void __xlcuf_init(void);
 
 int main(int argc, char *argv[])
 {
    int num_iterations = 10;
-   size_t free = 0, total = 0;                                                                                                                                                                                     
-   cudaError_t status;                                                                                                                                                                                             
    
-   status = cudaMemGetInfo(&free, &total);
-   printf("Before any kernel calls: GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
+   size_t N = 12*(1<<26); // About 6GB?
+   double *d_x, *d_y;                                                                                                                                              
 
    for (int i = 0; i < num_iterations; ++i)
    {
 
 		printf("------ITER %d --------\n",i);
-      status = cudaMemGetInfo(&free, &total);
-      printf("GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
 
-   	testDaxpy_cudac();
-   	status = cudaMemGetInfo(&free, &total);
-   	printf("[After CUDA C kernel]: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
-
+      // 1st package runs on GPU.  Utilizes primarily OpenMP maps.
+      printf("\n-- run kernel 1 --\n");
    	testdaxpy_omp45();
-   	status = cudaMemGetInfo(&free, &total);
-   	printf("[After OpenMP C kernel run]: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
-		printf("--------------------\n\n");
+		//omp_pause_resource_all(omp_pause_hard);
 
-//		omp_pause_resource_all(omp_pause_hard);
-//		omp_pause_resource_all(omp_pause_soft); // Doesn't free up memory from OpenMP memory pool
+      // 2nd package does not utiliize OpenMP maps.
+      // It makes direct device memory allocation calls on GPU for its needed memory.
+      printf("\n-- run kernel 2 (placeholder) --\n");
+      d_x = (double*)omp_target_alloc(N*sizeof(double), omp_get_default_device());
+      if (d_x == NULL)
+      {
+         printf("Failed to allocate d_x.\n");
+         exit(1);
+      }
+      d_y = (double*)omp_target_alloc(N*sizeof(double), omp_get_default_device());
+      if (d_y == NULL)
+      {
+         printf("Failed to allocate d_y.\n");
+         exit(1);
+      }
+
+      // 2nd package runs here
+      
+      // 2nd package frees memory from GPU
+      omp_target_free(d_x, omp_get_default_device());
+      omp_target_free(d_y, omp_get_default_device());
+		printf("--------------------\n\n");
 
    }
 	return (0);
