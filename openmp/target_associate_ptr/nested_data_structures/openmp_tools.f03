@@ -45,20 +45,19 @@ module openmp_tools
 
 contains
 
-   subroutine map_to(h_ptr, use_external_device_allocator)
+   subroutine map_to_double_1d(h_ptr, use_external_device_allocator)
       use iso_c_binding
       implicit none
 
       real(C_DOUBLE), pointer, intent(in) :: h_ptr(:)
       logical(C_BOOL), intent(in) :: use_external_device_allocator
 
-      real(C_DOUBLE) :: dummy_var
       integer(C_SIZE_T) :: num_bytes, offset
       integer :: err
       type(C_PTR) :: d_ptr
 
       if (use_external_device_allocator) then
-         num_bytes = sizeof(dummy_var)*SIZE(h_ptr)
+         num_bytes = storage_size(h_ptr)/8*SIZE(h_ptr)
          offset = 0
 
          ! Using omp_target_alloc as a surrogate for an external memory allocation
@@ -83,10 +82,10 @@ contains
          !$omp target enter data map(to:h_ptr)
       endif
       
-   end subroutine map_to
+   end subroutine map_to_double_1d
 
 
-   subroutine map_exit(h_ptr, use_external_device_allocator)
+   subroutine map_exit_double_1d(h_ptr, use_external_device_allocator)
       use iso_c_binding
       implicit none
 		real(C_DOUBLE), pointer, intent(in) :: h_ptr(:)
@@ -112,6 +111,212 @@ contains
          !$omp target exit data map (from:h_ptr)
       endif
 
-   end subroutine map_exit
+   end subroutine map_exit_double_1d
+
+   subroutine map_to_typeS_1d(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+
+      type(typeS), pointer, intent(in) :: h_ptr(:)
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      integer(C_SIZE_T) :: num_bytes, offset
+      integer :: err
+      type(C_PTR) :: d_ptr
+
+      if (use_external_device_allocator) then
+         num_bytes = storage_size(h_ptr)/8*SIZE(h_ptr)
+         offset = 0
+
+         ! Using omp_target_alloc as a surrogate for an external memory allocation
+         ! library.
+         ! This code example is meant to demonstrate use cases where using an external
+         ! memory library, such as the LLNL UMPIRE library, is required.
+         d_ptr = omp_target_alloc(num_bytes, omp_get_default_device() )
+
+         err = omp_target_associate_ptr( C_LOC(h_ptr), d_ptr, num_bytes, offset, omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target associate failed."
+         endif
+
+         ! Check that array shape information was copied to device by the
+         ! target_associate_ptr call.
+         !$omp target
+         write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
+         !$omp end target
+         
+         !$omp target update to(h_ptr)
+      else
+         !$omp target enter data map(to:h_ptr)
+      endif
+      
+   end subroutine map_to_typeS_1d
+
+   subroutine map_exit_typeS_1d(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+      type(typeS), pointer, intent(in) :: h_ptr(:)
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      type(C_PTR) :: d_ptr
+      integer :: err
+
+      if (use_external_device_allocator) then
+         !$omp target update from(h_ptr)
+         
+         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+         d_ptr = C_LOC(h_ptr)
+         !$omp end target data
+      
+         err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target disassociate on x failed."
+         endif
+      
+         call omp_target_free( d_ptr, omp_get_default_device() )
+      else
+         !$omp target exit data map (from:h_ptr)
+      endif
+
+   end subroutine map_exit_typeS_1d
+
+
+   subroutine map_to_typeG_1d(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+
+      type(typeG), pointer, intent(in) :: h_ptr(:)
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      integer(C_SIZE_T) :: num_bytes, offset
+      integer :: err
+      type(C_PTR) :: d_ptr
+
+      if (use_external_device_allocator) then
+         num_bytes = storage_size(h_ptr)/8*SIZE(h_ptr)
+         offset = 0
+
+         ! Using omp_target_alloc as a surrogate for an external memory allocation
+         ! library.
+         ! This code example is meant to demonstrate use cases where using an external
+         ! memory library, such as the LLNL UMPIRE library, is required.
+         d_ptr = omp_target_alloc(num_bytes, omp_get_default_device() )
+
+         err = omp_target_associate_ptr( C_LOC(h_ptr), d_ptr, num_bytes, offset, omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target associate failed."
+         endif
+
+         ! Check that array shape information was copied to device by the
+         ! target_associate_ptr call.
+         !$omp target
+         write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
+         !$omp end target
+         
+         !$omp target update to(h_ptr)
+      else
+         !$omp target enter data map(to:h_ptr)
+      endif
+      
+   end subroutine map_to_typeG_1d
+
+   subroutine map_exit_typeG_1d(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+      type(typeG), pointer, intent(in) :: h_ptr(:)
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      type(C_PTR) :: d_ptr
+      integer :: err
+
+      if (use_external_device_allocator) then
+         !$omp target update from(h_ptr)
+         
+         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+         d_ptr = C_LOC(h_ptr)
+         !$omp end target data
+      
+         err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target disassociate on x failed."
+         endif
+      
+         call omp_target_free( d_ptr, omp_get_default_device() )
+      else
+         !$omp target exit data map (from:h_ptr)
+      endif
+
+   end subroutine map_exit_typeG_1d
+
+   subroutine map_to_typeQ(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+
+      type(typeQ), pointer, intent(in) :: h_ptr
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      integer(C_SIZE_T) :: num_bytes, offset
+      integer :: err
+      type(C_PTR) :: d_ptr
+
+      if (use_external_device_allocator) then
+         num_bytes = storage_size(h_ptr)/8
+         offset = 0
+
+         ! Using omp_target_alloc as a surrogate for an external memory allocation
+         ! library.
+         ! This code example is meant to demonstrate use cases where using an external
+         ! memory library, such as the LLNL UMPIRE library, is required.
+         d_ptr = omp_target_alloc(num_bytes, omp_get_default_device() )
+
+         err = omp_target_associate_ptr( C_LOC(h_ptr), d_ptr, num_bytes, offset, omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target associate failed."
+         endif
+
+         !$omp target update to(h_ptr)
+      else
+         !$omp target enter data map(to:h_ptr)
+      endif
+      
+   end subroutine map_to_typeQ
+
+   subroutine map_exit_typeQ(h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      use example_types
+      implicit none
+      type(typeQ), pointer, intent(in) :: h_ptr
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      type(C_PTR) :: d_ptr
+      integer :: err
+
+      if (use_external_device_allocator) then
+      ! -------------------------
+      ! THIS CALL IS ERRORING OUT
+      ! --------------------------
+         print *, "-----> About to call 'update from' on the typeQ pointer. This generates an error. <------"
+         !$omp target update from(h_ptr) 
+         
+         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+         d_ptr = C_LOC(h_ptr)
+         !$omp end target data
+      
+         err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target disassociate on x failed."
+         endif
+      
+         call omp_target_free( d_ptr, omp_get_default_device() )
+      else
+         !$omp target exit data map (from:h_ptr)
+      endif
+
+   end subroutine map_exit_typeQ
 
 end module openmp_tools

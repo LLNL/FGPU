@@ -1,57 +1,15 @@
-module example
-   use iso_c_binding
-
-  type, public :: typeS
-    real(C_DOUBLE)                            :: double
-    real(C_DOUBLE), pointer, dimension(:) :: double_array
-  end type typeS
-
-  type, public :: typeG
-    real(C_DOUBLE)                        :: double
-    real(C_DOUBLE), pointer, dimension(:) :: double_array
-  end type typeG
-
-  type, public :: typeQ
-    real(C_DOUBLE)                        :: double
-    real(C_DOUBLE), pointer, dimension(:) :: double_array
-    type(typeS), pointer, dimension(:)    :: s_array
-    type(typeG), pointer, dimension(:)    :: g_array
-  end type typeQ
-
-  type(typeQ), pointer, public :: typeQ_ptr
-
-  contains
-
-    subroutine initialize()
-      implicit none
-      integer :: n
-
-      allocate(typeQ_ptr)
-      allocate(typeQ_ptr%double_array(10))
-
-      allocate(typeQ_ptr%s_array(2))
-      allocate(typeQ_ptr%g_array(2))
-
-      do n=1,2
-         allocate(typeQ_ptr%s_array(n)%double_array(5))
-         allocate(typeQ_ptr%g_array(n)%double_array(5))
-      enddo
-
-    end subroutine initialize
-
-end module example
-
-
 program fmain
-   use example
+   use example_types
    use openmp_tools
    use iso_c_binding
 
    implicit none
    integer :: i,n
    logical(C_BOOL) :: use_external_allocator
+   logical(C_BOOL) :: dont_use_external_allocator
 
    use_external_allocator = .TRUE.
+   dont_use_external_allocator = .FALSE.
 
    call initialize()
 
@@ -84,22 +42,22 @@ program fmain
       write(*,*) "typeQ_ptr%g_array(2)%double_array", typeQ_ptr%g_array(2)%double_array
 
       ! Map over 'Q' derived type
-      !$omp target enter data map(to:typeQ_ptr)
-      call map_to(typeQ_ptr%double_array, use_external_allocator)
+      
+      call map_to_typeQ(typeQ_ptr, use_external_allocator)
+      !call map_to_typeQ(typeQ_ptr, dont_use_external_allocator) ! <- works ok
 
-      ! Map over array of 'S' derived types in Q
-      !$omp target enter data map(to:typeQ_ptr%s_array)
-      !$omp target enter data map(to:typeQ_ptr%s_array(1))
-      call map_to(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
-      !$omp target enter data map(to:typeQ_ptr%s_array(2))
-      call map_to(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+      !---  The rest of these map to's appear to be working fine. -----
+      call map_to_double_1d(typeQ_ptr%double_array, use_external_allocator)
+
+      ! Map over array of 'S' derived types in Q.
+      call map_to_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
+      call map_to_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+      call map_to_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
  
       ! Map over array of 'G' derived types in Q
-      !$omp target enter data map(to:typeQ_ptr%g_array)
-      !$omp target enter data map(to:typeQ_ptr%g_array(1))
-      call map_to(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
-      !$omp target enter data map(to:typeQ_ptr%g_array(2))
-      call map_to(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
+      call map_to_typeG_1d(typeQ_ptr%g_array, use_external_allocator)
+      call map_to_double_1d(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
+      call map_to_double_1d(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
 
       !$omp target
       write(*,*) "\nOn device, after mapping to GPU"
@@ -129,25 +87,31 @@ program fmain
       enddo
       !$omp end target
 
+!---  Most of the map exit's appear to work fine. ------
+
+      ! Map back array of 'G' derived types in Q
+      call map_exit_double_1d(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
+      call map_exit_double_1d(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
+      call map_exit_typeG_1d(typeQ_ptr%g_array, use_external_allocator)
 
       ! Map back array of 'S' derived types in Q
-      call map_exit(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
-      !$omp target exit data map(from:typeQ_ptr%s_array(1))
-      call map_exit(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
-      !$omp target exit data map(from:typeQ_ptr%s_array(2))
-      !$omp target exit data map(from:typeQ_ptr%s_array)
- 
-      ! Map back array of 'G' derived types in Q
-      call map_exit(typeQ_ptr%g_array(1)%double_array, use_external_allocator)
-      !$omp target exit data map(from:typeQ_ptr%g_array(1))
-      call map_exit(typeQ_ptr%g_array(2)%double_array, use_external_allocator)
-      !$omp target exit data map(from:typeQ_ptr%g_array(2))
-      !$omp target exit data map(from:typeQ_ptr%g_array)
+      call map_exit_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+      call map_exit_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+      call map_exit_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
 
-      ! Map back 'Q' derived type
-      call map_exit(typeQ_ptr%double_array, use_external_allocator)
-      !$omp target exit data map(from:typeQ_ptr)
       
+      ! Map back 'Q' derived type
+      call map_exit_double_1d(typeQ_ptr%double_array, use_external_allocator)
+
+!--- This last map exit below fails with a
+!LOMP: warning in "memcopy frin device"
+!1587-175 The underlying GPU runtime reported the following error "invalid argument". 
+!LOMP: error in "memcopy frin device"
+!1587-163 Error encountered while attempting to execute on the target device 0.  The program will stop.
+
+      call map_exit_typeQ(typeQ_ptr, use_external_allocator)
+      !call map_exit_typeQ(typeQ_ptr, dont_use_external_allocator) ! <- works ok
+    
       write(*,*) "\nOn host, after mapping from GPU."
 
       write(*,*) "typeQ_ptr%double", typeQ_ptr%double
