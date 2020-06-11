@@ -21,7 +21,18 @@ void testDaxpy_cudac(void)
   y = (double*)malloc(N*sizeof(double));
 
   d_x = (double*)omp_target_alloc(N*sizeof(double), omp_get_default_device());
+  if (d_x == NULL)
+  {
+    printf("-- CUDA C kernel failed to allocate device memory.\n");
+    exit(1);
+  }
+
   d_y = (double*)omp_target_alloc(N*sizeof(double), omp_get_default_device());
+  if (d_y == NULL)
+  {
+    printf("-- CUDA C kernel failed to allocate device memory.\n");
+    exit(1);
+  }
 
 //  cudaMalloc(&d_x, N*sizeof(double)); 
 //  cudaMalloc(&d_y, N*sizeof(double));

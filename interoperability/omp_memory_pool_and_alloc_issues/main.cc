@@ -14,9 +14,7 @@ int main(int argc, char *argv[])
    cudaError_t status;                                                                                                                                                                                             
    
    status = cudaMemGetInfo(&free, &total);
-   printf("Before xlcuf_init call: GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
-
-   __xlcuf_init();
+   printf("Before any kernel calls: GPU's memory: %.2f MB used, %.2f MB free.\n", (double)(total-free)/1048576.0, (double)free/1048576.0);
 
    for (int i = 0; i < num_iterations; ++i)
    {
