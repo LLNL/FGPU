@@ -62,7 +62,6 @@ program fmain
 !$omp target enter data map(to:type1_ptr%type2_arr)
 
    do n=1,len
-      !$omp target enter data map(to:type1_ptr%type2_arr(n))
       !$omp target enter data map(to:type1_ptr%type2_arr(n)%simple_arr)
    end do
 
@@ -92,7 +91,6 @@ program fmain
 
    do n=1,len
       !$omp target exit data map(from:type1_ptr%type2_arr(n)%simple_arr)
-      !$omp target exit data map(from:type1_ptr%type2_arr(n))
    end do
 
 !$omp target exit data map(from:type1_ptr%type2_arr)

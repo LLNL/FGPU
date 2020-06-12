@@ -97,10 +97,20 @@ contains
       if (use_external_device_allocator) then
          !$omp target update from(h_ptr)
          
-         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+!         !$omp target map (from:d_ptr)
+!         d_ptr = C_LOC(h_ptr)
+!         !$omp end target
+ 
+         d_ptr = c_null_ptr
+         !$omp target data use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
-      
+         
+         if(.NOT. C_ASSOCIATED(d_ptr) ) then
+           print *, "Failed to get buffer address of pointer."
+           call abort
+         endif
+
          err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
          if (err /= 0) then
             print *, "Target disassociate on x failed."
@@ -166,10 +176,20 @@ contains
       if (use_external_device_allocator) then
          !$omp target update from(h_ptr)
          
-         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+!         !$omp target map (from:d_ptr)
+!         d_ptr = C_LOC(h_ptr)
+!         !$omp end target
+ 
+         d_ptr = c_null_ptr
+         !$omp target data use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
-      
+         
+         if(.NOT. C_ASSOCIATED(d_ptr) ) then
+           print *, "Failed to get buffer address of pointer."
+           call abort
+         endif
+          
          err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
          if (err /= 0) then
             print *, "Target disassociate on x failed."
@@ -236,10 +256,20 @@ contains
       if (use_external_device_allocator) then
          !$omp target update from(h_ptr)
          
-         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+!         !$omp target map (from:d_ptr)
+!         d_ptr = C_LOC(h_ptr)
+!         !$omp end target
+ 
+         d_ptr = c_null_ptr
+         !$omp target data use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
-      
+         
+         if(.NOT. C_ASSOCIATED(d_ptr) ) then
+           print *, "Failed to get buffer address of pointer."
+           call abort
+         endif
+         
          err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
          if (err /= 0) then
             print *, "Target disassociate on x failed."
@@ -297,15 +327,21 @@ contains
       integer :: err
 
       if (use_external_device_allocator) then
-      ! -------------------------
-      ! THIS CALL IS ERRORING OUT
-      ! --------------------------
-         print *, "-----> About to call 'update from' on the typeQ pointer. This generates an error. <------"
          !$omp target update from(h_ptr) 
-         
-         !$omp target data map(from:d_ptr) use_device_ptr(h_ptr)
+ 
+!         !$omp target map (from:d_ptr)
+!         d_ptr = C_LOC(h_ptr)
+!         !$omp end target
+ 
+         d_ptr = c_null_ptr
+         !$omp target data use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
+ 
+         if(.NOT. C_ASSOCIATED(d_ptr) ) then
+           print *, "Failed to get buffer address of pointer."
+           call abort
+         endif
       
          err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
          if (err /= 0) then
