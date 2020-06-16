@@ -7,4 +7,4 @@ debug:
 	xlf_r -qsmp=noopt -O -g -qoffload -qlomp_debug -qinfo=omperrtrace -o test_debug nested_types.f03
 
 clean:
-	rm -f *.o *.mod test
+	rm -f *.o *.mod test_*
