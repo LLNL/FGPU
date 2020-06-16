@@ -28,9 +28,9 @@ module example
       allocate(type1_ptr%type2_arr(len))
 
       do n=1,len
-        type1_ptr%type2_arr(n)%x = 2.0
+        type1_ptr%type2_arr(n)%x = 1.0
         allocate(type1_ptr%type2_arr(n)%simple_arr(10))
-        type1_ptr%type2_arr(n)%simple_arr(:) = 2.0
+        type1_ptr%type2_arr(n)%simple_arr(:) = 1.0
       end do
 
     end subroutine initialize
@@ -48,8 +48,8 @@ program fmain
    allocate(type1_ptr)
    call initialize(len)
 
-   write(*,*) "\nOn host, before mapping data to device."
-
+   write(*,*) "\nOn host, before mapping data to device.  Everything is set to 1.0."
+   write(*,*) "\n------------------------------------------------------------------"
    write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
@@ -59,14 +59,20 @@ program fmain
 
 !$omp target enter data map(to:type1_ptr)
 !$omp target enter data map(to:type1_ptr%simple_arr)
+
+! Check with Tom on the OpenMP expected behavior when mapping an array of type pointers.
+! In the IBM case, it appears to performs a deep copy ( will allocate and copy each type too ).
 !$omp target enter data map(to:type1_ptr%type2_arr)
 
+! Appears to be superfluous for the IBM case, but verify behavior on other platforms
+! when available. (should not have any ill effect, will just be redundant on IBM case)
    do n=1,len
       !$omp target enter data map(to:type1_ptr%type2_arr(n)%simple_arr)
    end do
 
 !$omp target
-   write(*,*) "\nOn device, before assignments."
+   write(*,*) "\nOn device, before assignments.  Everything should be set to 1.0"
+   write(*,*) "\n---------------------------------------------------------------"
    write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
@@ -74,37 +80,41 @@ program fmain
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 
-   type1_ptr%x = 10.0
-   type1_ptr%simple_arr(1) = 10.0
-   type1_ptr%type2_arr(1)%x = 10.0
-   type1_ptr%type2_arr(1)%simple_arr(1) = 10.0
+   type1_ptr%x = 2.0
+   type1_ptr%simple_arr(1) = 2.0
+   type1_ptr%type2_arr(1)%x = 2.0
+   type1_ptr%type2_arr(1)%simple_arr(1) = 2.0
 
    write(*,*) "\nIn device, after assignments."
-   write(*,*) "type1%x", type1_ptr%x, " <- type1_ptr%x should now be 10.0000000 on the device."
+   write(*,*) "\n-----------------------------"
+   write(*,*) "\nFirst entry in type2_arr should be set to 2.0."
+   write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
-   write(*,*) "(next two should be unchanged)"
+   write(*,*) "\nSecond entry in type2_arr should be unchanged ( still 1.0 )."
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 !$omp end target 
 
+! See note at line 63 about this being redundant ( at least for IBM behavior ).
    do n=1,len
       !$omp target exit data map(from:type1_ptr%type2_arr(n)%simple_arr)
    end do
 
 !$omp target exit data map(from:type1_ptr%type2_arr)
 !$omp target exit data map(from:type1_ptr%simple_arr)
-write(*,*) "Calling target exit data map on type1_ptr.  This should decrement ref count to 0 and map back type1_ptr%x ( a float )."
 !$omp target exit data map(from:type1_ptr)
 
    write(*,*) "\nOn host, after map back."
-   write(*,*) "These should be 10."
-   write(*,*) "type1%x", type1_ptr%x, " <- this should be 10.00000"
+   write(*,*) "\n------------------------"
+   write(*,*) "Type 1 vars should be 2.0."
+   write(*,*) "type1%x", type1_ptr%x
    write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
+   write(*,*) "\nFirst entry in type2_arr should be 2.0."
    write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
-   write(*,*) "Next two should be unchanged"
+   write(*,*) "\nSecond entry in type2_arr should be unchanged ( still 1.0 )."
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 
