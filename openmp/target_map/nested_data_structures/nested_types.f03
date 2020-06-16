@@ -44,7 +44,7 @@ program fmain
    implicit none
    integer :: n, len
 
-   len = 5
+   len = 2
    allocate(type1_ptr)
    call initialize(len)
 
@@ -57,17 +57,31 @@ program fmain
    write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(1)%x
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
 
+print *, "--- BEFORE MAP(TO:TYPE1_PTR) ---"
 !$omp target enter data map(to:type1_ptr)
+print *, "--- AFTER MAP(TO:TYPE1_PTR) ---"
+
+print *, "--- BEFORE MAP(TO:TYPE1_PTR%SIMPLE_ARR) ---"
 !$omp target enter data map(to:type1_ptr%simple_arr)
+print *, "--- AFTER MAP(TO:TYPE1_PTR%SIMPLE_ARR) ---"
 
 ! Check with Tom on the OpenMP expected behavior when mapping an array of type pointers.
 ! In the IBM case, it appears to performs a deep copy ( will allocate and copy each type too ).
-!$omp target enter data map(to:type1_ptr%type2_arr)
 
-! Appears to be superfluous for the IBM case, but verify behavior on other platforms
-! when available. (should not have any ill effect, will just be redundant on IBM case)
+print *, "--- BEFORE MAP(TO:TYPE1_PTR%TYPE2_ARR) ---"
+!$omp target enter data map(to:type1_ptr%type2_arr)
+print *, "--- AFTER MAP(TO:TYPE1_PTR%TYPE2_ARR) ---"
+
    do n=1,len
+      ! Appears to be superfluous for the IBM case, but verify behavior on other platforms
+      ! when available. (should not have any ill effect, will just be redundant on IBM case)
+      print *, "--- BEFORE MAP(TO:TYPE1_PTR%TYPE2_ARR(",n,") ---"
+      !$omp target enter data map(to:type1_ptr%type2_arr(n))
+      print *, "--- AFTER MAP(TO:TYPE1_PTR%TYPE2_ARR(",n,") ---"
+
+      print *, "--- BEFORE MAP(TO:TYPE1_PTR%TYPE2_ARR(",n,")%SIMPLE_ARR ---"
       !$omp target enter data map(to:type1_ptr%type2_arr(n)%simple_arr)
+      print *, "--- AFTER MAP(TO:TYPE1_PTR%TYPE2_ARR(",n,")%SIMPLE_ARR ---"
    end do
 
 !$omp target
@@ -97,14 +111,28 @@ program fmain
    write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 !$omp end target 
 
-! See note at line 63 about this being redundant ( at least for IBM behavior ).
+! See note above about this being redundant ( at least for IBM behavior ).
    do n=1,len
+      print *, "--- BEFORE MAP(FROM:TYPE1_PTR%TYPE2_ARR(",n,") ---"
+      !$omp target exit data map(from:type1_ptr%type2_arr(n))
+      print *, "--- AFTER MAP(FROM:TYPE1_PTR%TYPE2_ARR(",n,") ---"
+
+      print *, "--- BEFORE MAP(FROM:TYPE1_PTR%TYPE2_ARR(",n,")%SIMPLE_ARR ---"
       !$omp target exit data map(from:type1_ptr%type2_arr(n)%simple_arr)
+      print *, "--- AFTER MAP(FROM:TYPE1_PTR%TYPE2_ARR(",n,")%SIMPLE_ARR ---"
    end do
 
+print *, "--- BEFORE MAP(FROM:TYPE1_PTR%TYPE2_ARR) ---"
 !$omp target exit data map(from:type1_ptr%type2_arr)
+print *, "--- AFTER MAP(FROM:TYPE1_PTR%TYPE2_ARR) ---"
+
+print *, "--- BEFORE MAP(FROM:TYPE1_PTR%SIMPLE_ARR) ---"
 !$omp target exit data map(from:type1_ptr%simple_arr)
+print *, "--- AFTER MAP(FROM:TYPE1_PTR%SIMPLE_ARR) ---"
+
+print *, "--- BEFORE MAP(FROM:TYPE1_PTR) ---"
 !$omp target exit data map(from:type1_ptr)
+print *, "--- AFTER MAP(FROM:TYPE1_PTR) ---"
 
    write(*,*) "\nOn host, after map back."
    write(*,*) "\n------------------------"
