@@ -3,7 +3,4 @@ It tests the ability of these two kernels to run back-to-back and each access a 
 
 Device memory allocations for both kernels are handled through OpenMP.
 
-This example has trouble on the DOE Sierra machine because the OpenMP runtime makes use of a memory pool for the OpenMP data maps.
-The memory pool does not release all its device memory which causes the omp_target_alloc call to fail when trying to allocate memory.
-
 -- Aaron Black
