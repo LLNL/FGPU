@@ -31,7 +31,7 @@ void testdaxpy_omp45()
       y_ptr[i] = a*x_ptr[i] + y_ptr[i];
    }
 
-   #pragma omp target exit data map(from:y_ptr[:N])
+   #pragma omp target exit data map(from:x_ptr[:N], y_ptr[:N])
 
 	double maxError = 0.0f;
 	for (int i = 0; i < N; i++)
