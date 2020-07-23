@@ -1,1 +1,3 @@
 This directory contains code examples that failed to compile or function correctly in early testing on the LLNL SIERRA platform with the IBM XL tool chain.
+
+This includes code snippets that are not legal OpenMP, but the compiler didn't catch it, resulting in code that compiled and ran incorrectly.

@@ -1,7 +1,0 @@
-Small test of applying OpenMP parallel do over a non-rectangular loop nest that doesn't conform to OpenMP spec.
-
-This shouldn't compile, as its not legal OpenMP.  The compiler is unable to determine the loop bounds at compile time.
-
-The IBM XLF compiler compiles this and gets an out-of-bounds memory access error at runtime.
-
-Other compilers emit an error at compile time, stating the the loop is a non-rectangular iteration nest and does not conform to spec.

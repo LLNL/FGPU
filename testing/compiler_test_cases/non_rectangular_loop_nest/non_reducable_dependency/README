@@ -1,0 +1,7 @@
+Small test of applying OpenMP parallel do over a non-rectangular loop nest that doesn't conform to OpenMP spec.
+
+The dependency between the inner loop bound and outer loop bound is not reducable to a simple expression.  It requires a memory access ( lookup ).
+
+The IBM XLF compiler compiles this and gets an out-of-bounds memory access error at runtime.
+
+Other compilers emit an error at compile time, stating the the loop is a non-rectangular iteration nest and does not conform to spec.  This is likely due to them not supporting any non-rectangular loop nests.  When that support is added, ensure that this illegal loop form is caught by the compiler.
