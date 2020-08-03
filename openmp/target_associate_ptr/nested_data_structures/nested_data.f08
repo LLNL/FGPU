@@ -5,8 +5,9 @@ program fmain
 
    implicit none
    integer :: i,n
-   logical(C_BOOL) :: use_external_allocator
+   logical(C_BOOL) :: use_external_allocator, use_wrapper_api
 
+   use_wrapper_api = .FALSE.
    use_external_allocator = .TRUE.
 
    call initialize()
@@ -31,17 +32,40 @@ program fmain
 	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array", typeQ_ptr%s_array(n)%double_array
 		enddo
 
-      print *, "--- mapping Q ---"     
-      call map_to_typeQ_ptr(typeQ_ptr, use_external_allocator)
-      print *, "--- mapping Q%double_array ---"     
-      call map_to_double_1d(typeQ_ptr%double_array, use_external_allocator)
+      print *, "--- mapping Q ---"
+      if (use_wrapper_api) then     
+	      call map_to_typeQ_ptr(typeQ_ptr, use_external_allocator)
+		else
+			!$omp target enter data map(to:typeQ_ptr)
+		endif
 
-      print *, "--- mapping Q%s_array ---"     
-      call map_to_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
+      print *, "--- mapping Q%double_array ---"     
+      if (use_wrapper_api) then     
+      	call map_to_double_1d(typeQ_ptr%double_array, use_external_allocator)
+      else
+			!$omp target enter data map(to:typeQ_ptr%double_array)
+      endif
+
+      print *, "--- mapping Q%s_array ---"
+		if (use_wrapper_api) then
+	      call map_to_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
+		else
+			!$omp target enter data map(to:typeQ_ptr%s_array)
+		endif
+
       print *, "--- mapping Q%s_array(1)%double_array ---"     
-      call map_to_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+		if (use_wrapper_api) then
+	      call map_to_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+		else
+			!$omp target enter data map(to:typeQ_ptr%s_array(1)%double_array)
+		endif
+
       print *, "--- mapping Q%s_array(2)%double_array ---"     
-      call map_to_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+		if (use_wrapper_api) then
+      	call map_to_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+		else
+			!$omp target enter data map(to:typeQ_ptr%s_array(2)%double_array)
+		endif
  
       !$omp target
       write(*,*) "\nOn device, after mapping to GPU"
@@ -64,18 +88,46 @@ program fmain
       !$omp end target
 
       print *, "--- unmapping Q%s_array(2)%double_array ---"
-      call map_exit_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+		if (use_wrapper_api) then
+      	call map_exit_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+		else
+			!$omp target exit data map(from:typeQ_ptr%s_array(2)%double_array)
+		endif
+
       print *, "--- unmapping Q%s_array(1)%double_array ---"     
-      call map_exit_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+		if (use_wrapper_api) then
+	      call map_exit_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+		else
+			!$omp target exit data map(from:typeQ_ptr%s_array(1)%double_array)
+		endif
+
       print *, "--- unmapping Q%s_array ---"     
-      call map_exit_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
+		if (use_wrapper_api) then
+	      call map_exit_typeS_1d(typeQ_ptr%s_array, use_external_allocator)
+		else
+			!$omp target exit data map(from:typeQ_ptr%s_array)
+		endif
 
       print *, "--- unmapping Q%double_array ---"     
-      call map_exit_double_1d(typeQ_ptr%double_array, use_external_allocator)
+		if (use_wrapper_api) then
+	      call map_exit_double_1d(typeQ_ptr%double_array, use_external_allocator)
+		else
+			!$omp target exit data map(from:typeQ_ptr%double_array)
+		endif
+
       print *, "--- unmapping Q ---"     
-      call map_exit_typeQ_ptr(typeQ_ptr, use_external_allocator)
+		if (use_wrapper_api) then
+	      call map_exit_typeQ_ptr(typeQ_ptr, use_external_allocator)
+		else
+			!$omp target exit data map(from:typeQ_ptr)
+		endif
     
       write(*,*) "\nOn host, after mapping from GPU."
+      write(*,*) "\nAll values below should be 0."
+
+      if (use_wrapper_api .EQV. .FALSE.) then
+			write(*,*) "\n Current error behavior - typeQ_ptr%double value is not being updated to 0 on host with raw omp target calls."
+		endif
 
       write(*,*) "typeQ_ptr%double", typeQ_ptr%double
       write(*,*) "typeQ_ptr%double_array", typeQ_ptr%double_array
