@@ -1,0 +1,765 @@
+LOG OF RUNNING WITH TARGET ASSOC/DISSASSOC
+
+------------- ITERATION  1  ----------------
+ 
+On host, before mapping to GPU.
+ typeQ_ptr%double 1.00000000000000000
+ typeQ_ptr%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+ typeQ_ptr%s_array( 1 )%double 1.00000000000000000
+ typeQ_ptr%s_array( 1 )%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+ typeQ_ptr%s_array( 2 )%double 1.00000000000000000
+ typeQ_ptr%s_array( 2 )%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+ --- mapping Q ---
+<-1 @  0>
+<-1 @  0>Map list after After initializing globals for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- mapping Q%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Target call enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+ Mapped pointer, shape on device is:  10
+<-1 @  0>
+<-1 @  0>Map list after Target call exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- mapping Q%s_array ---
+<-1 @  0>
+<-1 @  0>Map list after Target call enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+ Mapped pointer, shape on device is:  2
+<-1 @  0>
+<-1 @  0>Map list after Target call exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- mapping Q%s_array(1)%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Target call enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+ Mapped pointer, shape on device is:  5
+<-1 @  0>
+<-1 @  0>Map list after Target call exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- mapping Q%s_array(2)%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Target call enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+ Mapped pointer, shape on device is:  5
+<-1 @  0>
+<-1 @  0>Map list after Target call exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Target call enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4950 - 0x104f495b, dev 0x2000b0000000 - 0x2000b000000c, size 12, ref/use counts 0/1, event to/from 0x7fffffffb980/0x0
+<-1 @  0>  4: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967296, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  23: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ 
+On device, after mapping to GPU
+ typeQ_ptr%double 1.00000000000000000
+ typeQ_ptr%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+ typeQ_ptr%s_array(1)%double 1.00000000000000000
+ typeQ_ptr%s_array(1)%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+ typeQ_ptr%s_array(2)%double 1.00000000000000000
+ typeQ_ptr%s_array(2)%double_array 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000 1.00000000000000000
+<-1 @  0>
+<-1 @  0>Map list after Target call exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- unmapping Q%s_array(2)%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+LOMP WARNING: cleanup instructed to wait, but no events (ok when nothing happened)
+<-1 @  0>
+<-1 @  0>Map list after Enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  22: host Q%s_array(2), dev 0x200053200800 - 0x200053200828, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- unmapping Q%s_array(1)%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+LOMP WARNING: cleanup instructed to wait, but no events (ok when nothing happened)
+<-1 @  0>
+<-1 @  0>Map list after Enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q%s_array(1), dev 0x200053200600 - 0x200053200628, size 40, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  21: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- unmapping Q%s_array ---
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+LOMP WARNING: cleanup instructed to wait, but no events (ok when nothing happened)
+<-1 @  0>
+<-1 @  0>Map list after Enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  20: host Q%s_array, dev 0x200053200400 - 0x200053200480, size 128, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- unmapping Q%double_array ---
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+LOMP WARNING: cleanup instructed to wait, but no events (ok when nothing happened)
+<-1 @  0>
+<-1 @  0>Map list after Enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  19: host Q%double_array, dev 0x200053200200 - 0x200053200250, size 80, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ --- unmapping Q ---
+<-1 @  0>
+<-1 @  0>Map list after Update for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+LOMP WARNING: cleanup instructed to wait, but no events (ok when nothing happened)
+<-1 @  0>
+<-1 @  0>Map list after Enter for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>
+<-1 @  0>Map list after Exit for device 0
+<-1 @  0>  0: host 0x104f4890 - 0x104f48c7, dev 0x20005341ff00 - 0x20005341ff38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  1: host 0x104f48d0 - 0x104f4907, dev 0x200053420300 - 0x200053420338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  2: host 0x104f4910 - 0x104f4947, dev 0x200053420700 - 0x200053420738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  3: host 0x104f4b10 - 0x104f4b15, dev 0x20005341fd00 - 0x20005341fd06, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  4: host 0x104f4b20 - 0x104f4b67, dev 0x20005341fe00 - 0x20005341fe48, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  5: host 0x104f4b68 - 0x104f4b6d, dev 0x200053420400 - 0x200053420406, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  6: host 0x104f4b70 - 0x104f4bb7, dev 0x200053420600 - 0x200053420648, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  7: host 0x104f4bb8 - 0x104f4bbd, dev 0x200053420000 - 0x200053420006, size 6, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  8: host 0x104f4bc0 - 0x104f4c07, dev 0x200053420200 - 0x200053420248, size 72, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  9: host 0x104f4ea0 - 0x104f4ed7, dev 0x200053401700 - 0x200053401738, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  10: host 0x104f4fa0 - 0x104f4fd7, dev 0x200053401800 - 0x200053401838, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  11: host 0x104f5370 - 0x104f53a7, dev 0x200053401d00 - 0x200053401d38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  12: host 0x104f53b0 - 0x104f53e7, dev 0x200053401e00 - 0x200053401e38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  13: host 0x104f53f0 - 0x104f5427, dev 0x200053401f00 - 0x200053401f38, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  14: host 0x104f5430 - 0x104f5467, dev 0x200053402000 - 0x200053402038, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  15: host 0x104f5470 - 0x104f54a7, dev 0x200053402100 - 0x200053402138, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  16: host 0x104f54b0 - 0x104f54e7, dev 0x200053402200 - 0x200053402238, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  17: host 0x104f54f0 - 0x104f5527, dev 0x200053402300 - 0x200053402338, size 56, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+<-1 @  0>  18: host Q, dev 0x200053200000 - 0x2000532000b0, size 176, ref/use counts 4294967295/4294967295, event to/from 0x0/0x0
+ 
+On host, after mapping from GPU.
+ typeQ_ptr%double 0.000000000000000000E+00
+ typeQ_ptr%double_array 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00
+ typeQ_ptr%s_array( 1 )%double 0.000000000000000000E+00
+ typeQ_ptr%s_array( 1 )%double_array 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00
+ typeQ_ptr%s_array( 2 )%double 0.000000000000000000E+00
+ typeQ_ptr%s_array( 2 )%double_array 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00 0.000000000000000000E+00

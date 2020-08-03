@@ -1,0 +1,1 @@
+Example of mapping nested data structures, along with output from OpenMP debug runtime on Sierra showing the list of items mapped to the GPU.
