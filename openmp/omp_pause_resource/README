@@ -1,0 +1,3 @@
+This test code contains a main driver which tests the use of the OpenMP omp_pause_resource call to try and free up the memory overhead of using OpenMP on the GPU.
+
+-- Aaron Black
