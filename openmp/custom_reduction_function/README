@@ -2,3 +2,24 @@ This example code include a custom openmp reduction function for finding the max
 
 Bugs:
 - The IBM XLF compiler appears to work fine for this example with an optimization level of '-O2', but if '-O3' is used it returns sporadic results.
+
+Example of -O2 run:
+ fortran intrinsics on CPU:
+ cpu max 0.999999945983290561 at 11 14 1
+ extrinsics on GPU, first call:
+ gpu max 0.999999945983290561 at 11 14 1
+ extrinsics on GPU, second call:
+ gpu max 0.999999945983290561 at 11 14 1
+ extrinsics on GPU, third call:
+ gpu max 0.999999945983290561 at 11 14 1
+
+With -O3, the gpu results are wrong, and not consistent.
+ fortran intrinsics on CPU:
+ cpu max 0.999999945983290561 at 11 14 1
+ extrinsics on GPU, first call:
+ gpu max 0.999999945983290561 at 73 3 68
+ extrinsics on GPU, second call:
+ gpu max 0.999999945983290561 at 37 96 27
+ extrinsics on GPU, third call:
+ gpu max 0.999999945983290561 at 37 96 2
+
