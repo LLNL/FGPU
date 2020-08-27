@@ -1,0 +1,4 @@
+This example code include a custom openmp reduction function for finding the maximum value in an array, and the location of that maximum value.
+
+Bugs:
+- The IBM XLF compiler appears to work fine for this example with an optimization level of '-O2', but if '-O3' is used it returns sporadic results.
