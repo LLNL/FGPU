@@ -1,1 +1,0 @@
-Small tests that apply OpenMP parallel do's over loop nests that require lookups for the loop bounds.
