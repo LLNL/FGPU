@@ -1,5 +1,4 @@
 module openmp_tools
-
    use iso_c_binding
    use omp_lib
    implicit none
