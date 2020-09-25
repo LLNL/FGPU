@@ -20,6 +20,8 @@ program fmain
       do n=1,2
          typeQ_ptr%s_array(n)%double = i
          typeQ_ptr%s_array(n)%double_array = i
+         typeQ_ptr%s_array(n)%double_array_2d = i
+         typeQ_ptr%s_array(n)%double_array_3d = i
       enddo
 
       write(*,*) "\nOn host, before mapping to GPU."
@@ -30,6 +32,8 @@ program fmain
       do n=1,2
       	write(*,*) "typeQ_ptr%s_array(", n, ")%double", typeQ_ptr%s_array(n)%double
 	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array", typeQ_ptr%s_array(n)%double_array
+	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array_2d", typeQ_ptr%s_array(n)%double_array_2d
+	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array_3d", typeQ_ptr%s_array(n)%double_array_3d
 		enddo
 
       print *, "--- mapping Q ---"
@@ -53,18 +57,26 @@ program fmain
 			!$omp target enter data map(to:typeQ_ptr%s_array)
 		endif
 
-      print *, "--- mapping Q%s_array(1)%double_array ---"     
+      print *, "--- mapping Q%s_array(1) double_arrays ---"     
 		if (use_wrapper_api) then
 	      call map_to_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+	      call map_to_double_2d(typeQ_ptr%s_array(1)%double_array_2d, use_external_allocator)
+	      call map_to_double_3d(typeQ_ptr%s_array(1)%double_array_3d, use_external_allocator)
 		else
 			!$omp target enter data map(to:typeQ_ptr%s_array(1)%double_array)
+			!$omp target enter data map(to:typeQ_ptr%s_array(1)%double_array_2d)
+			!$omp target enter data map(to:typeQ_ptr%s_array(1)%double_array_3d)
 		endif
 
-      print *, "--- mapping Q%s_array(2)%double_array ---"     
+      print *, "--- mapping Q%s_array(2) double_arrays  ---"     
 		if (use_wrapper_api) then
       	call map_to_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+      	call map_to_double_2d(typeQ_ptr%s_array(2)%double_array_2d, use_external_allocator)
+      	call map_to_double_3d(typeQ_ptr%s_array(2)%double_array_3d, use_external_allocator)
 		else
 			!$omp target enter data map(to:typeQ_ptr%s_array(2)%double_array)
+			!$omp target enter data map(to:typeQ_ptr%s_array(2)%double_array_2d)
+			!$omp target enter data map(to:typeQ_ptr%s_array(2)%double_array_3d)
 		endif
  
       !$omp target
@@ -75,8 +87,12 @@ program fmain
 
       write(*,*) "typeQ_ptr%s_array(1)%double", typeQ_ptr%s_array(1)%double
       write(*,*) "typeQ_ptr%s_array(1)%double_array", typeQ_ptr%s_array(1)%double_array
+      write(*,*) "typeQ_ptr%s_array(1)%double_array_2d", typeQ_ptr%s_array(1)%double_array_2d
+      write(*,*) "typeQ_ptr%s_array(1)%double_array_3d", typeQ_ptr%s_array(1)%double_array_3d
       write(*,*) "typeQ_ptr%s_array(2)%double", typeQ_ptr%s_array(2)%double
       write(*,*) "typeQ_ptr%s_array(2)%double_array", typeQ_ptr%s_array(2)%double_array
+      write(*,*) "typeQ_ptr%s_array(2)%double_array_2d", typeQ_ptr%s_array(2)%double_array_2d
+      write(*,*) "typeQ_ptr%s_array(2)%double_array_3d", typeQ_ptr%s_array(2)%double_array_3d
 
       typeQ_ptr%double =  0
       typeQ_ptr%double_array =  0
@@ -84,21 +100,31 @@ program fmain
       do n=1,2
          typeQ_ptr%s_array(n)%double = 0
          typeQ_ptr%s_array(n)%double_array = 0
+         typeQ_ptr%s_array(n)%double_array_2d = 0
+         typeQ_ptr%s_array(n)%double_array_3d = 0
       enddo
       !$omp end target
 
-      print *, "--- unmapping Q%s_array(2)%double_array ---"
+      print *, "--- unmapping Q%s_array(2) double_arrays ---"
 		if (use_wrapper_api) then
       	call map_exit_double_1d(typeQ_ptr%s_array(2)%double_array, use_external_allocator)
+      	call map_exit_double_2d(typeQ_ptr%s_array(2)%double_array_2d, use_external_allocator)
+      	call map_exit_double_3d(typeQ_ptr%s_array(2)%double_array_3d, use_external_allocator)
 		else
 			!$omp target exit data map(from:typeQ_ptr%s_array(2)%double_array)
+			!$omp target exit data map(from:typeQ_ptr%s_array(2)%double_array_2d)
+			!$omp target exit data map(from:typeQ_ptr%s_array(2)%double_array_3d)
 		endif
 
-      print *, "--- unmapping Q%s_array(1)%double_array ---"     
+      print *, "--- unmapping Q%s_array(1) double_arrays ---"     
 		if (use_wrapper_api) then
 	      call map_exit_double_1d(typeQ_ptr%s_array(1)%double_array, use_external_allocator)
+      	call map_exit_double_2d(typeQ_ptr%s_array(1)%double_array_2d, use_external_allocator)
+      	call map_exit_double_3d(typeQ_ptr%s_array(1)%double_array_3d, use_external_allocator)
 		else
 			!$omp target exit data map(from:typeQ_ptr%s_array(1)%double_array)
+			!$omp target exit data map(from:typeQ_ptr%s_array(1)%double_array_2d)
+			!$omp target exit data map(from:typeQ_ptr%s_array(1)%double_array_3d)
 		endif
 
       print *, "--- unmapping Q%s_array ---"     
@@ -135,6 +161,8 @@ program fmain
       do n=1,2
       	write(*,*) "typeQ_ptr%s_array(", n, ")%double", typeQ_ptr%s_array(n)%double
 	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array", typeQ_ptr%s_array(n)%double_array
+	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array_2d", typeQ_ptr%s_array(n)%double_array_2d
+	      write(*,*) "typeQ_ptr%s_array(", n, ")%double_array_3d", typeQ_ptr%s_array(n)%double_array_3d
 		enddo
 
    enddo
