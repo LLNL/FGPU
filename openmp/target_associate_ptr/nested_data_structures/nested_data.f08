@@ -7,7 +7,7 @@ program fmain
    integer :: i,n
    logical(C_BOOL) :: use_external_allocator, use_wrapper_api
 
-   use_wrapper_api = .FALSE.
+   use_wrapper_api = .TRUE.
    use_external_allocator = .TRUE.
 
    call initialize()
