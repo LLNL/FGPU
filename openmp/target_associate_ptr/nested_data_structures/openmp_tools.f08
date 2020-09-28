@@ -73,9 +73,9 @@ contains
 
          ! Check that array shape information was copied to device by the
          ! target_associate_ptr call.
-         !$omp target
-         write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
-         !$omp end target
+         !!$omp target
+         !write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
+         !!$omp end target
          
          !$omp target update to(h_ptr)
       else
@@ -112,9 +112,9 @@ contains
 
          ! Check that array shape information was copied to device by the
          ! target_associate_ptr call.
-         !$omp target
-         write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
-         !$omp end target
+         !!$omp target
+         !write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
+         !!$omp end target
          
          !$omp target update to(h_ptr)
       else
@@ -151,9 +151,9 @@ contains
 
          ! Check that array shape information was copied to device by the
          ! target_associate_ptr call.
-         !$omp target
-         write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
-         !$omp end target
+         !!$omp target
+         !write(*,*) "Mapped pointer, shape on device is: ", SHAPE(h_ptr)
+         !!$omp end target
          
          !$omp target update to(h_ptr)
       else

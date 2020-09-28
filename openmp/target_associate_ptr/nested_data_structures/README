@@ -1,1 +1,3 @@
 Example of mapping nested data structures.
+
+This code example is using the target_associate_ptr call to show how an 'external' memory allocator can be used with OpenMP.
