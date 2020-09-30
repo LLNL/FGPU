@@ -1,0 +1,6 @@
+This test code contains a main driver which executes a CUDA C kernel and an OpenMP device kernel.
+It tests the ability of these two kernels to run back-to-back and each access a large portion of the GPU memory.
+
+Device memory allocations for both kernels are handled through OpenMP.
+
+-- Aaron Black

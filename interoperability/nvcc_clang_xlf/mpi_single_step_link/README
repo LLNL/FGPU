@@ -1,0 +1,14 @@
+This test code contains a main driver which executes several different saxpy kernels.
+This variant adds some simple MPI barriers to test MPI.
+
+It uses a common compiler configuration on SIERRA - a mixture of NVCC + CLANG + XLF to provide gpu kernels in CUDA C, OpenMP CPU threading via CLANG, and OpenMP GPU FORTRAN kernels with XLF.
+
+NVCC CUDA C
+--DISABLED-- CLANG OPENMP4.5 (GPU) C
+CLANG OPENMP C
+XLF OPENMP4.5 (GPU) FORTRAN
+
+NOTE - This combination of compilers does not allow both C OpenMP GPU kernels and FORTRAN OpenMP GPU kernels to run.  The CLANG and XL OpenMP GPU runtimes are not compatible.
+
+-- Aaron Black
+black27@llnl.gov

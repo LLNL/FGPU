@@ -1,0 +1,3 @@
+Tests using the OpenMP conditional compile comments.
+
+Lines preceded by '!$' should only be compiled when OpenMP is enabled by a compiler.

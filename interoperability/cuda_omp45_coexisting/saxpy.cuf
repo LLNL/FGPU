@@ -30,5 +30,5 @@ subroutine testSaxpy_cudafortran
   y_d = y
   call saxpy_cudafortran<<<grid, tBlock>>>(x_d, y_d, a)
   y = y_d
-  write(*,*) "Ran CUDA FORTRAN kernel.  Max error: ", maxval(abs(y-4.0))
+  write(*,*) "-- Ran CUDA FORTRAN kernel.  Max error: ", maxval(abs(y-4.0))
 end subroutine testSaxpy_cudafortran

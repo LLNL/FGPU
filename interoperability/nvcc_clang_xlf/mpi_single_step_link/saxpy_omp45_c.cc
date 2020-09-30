@@ -3,7 +3,7 @@
 #include <math.h>
 #include "kernels.h"
 
-void testsaxpy_omp45()
+void testsaxpy_omp45_c()
 {
 	int N = 1<<21;
    int a = 2.0f;
@@ -21,11 +21,10 @@ void testsaxpy_omp45()
    #pragma omp target map(to:N,a,x[:N]) map(y[:N])
    {
 
-   #pragma omp parallel for
+   #pragma omp teams distribute parallel for shared(y,a,x,N) default(none)
    for (int i = 0; i < N; ++i)
    {
       y[i] = a*x[i] + y[i];
-		//addFourTimes( i, y );
    }
 
    }
