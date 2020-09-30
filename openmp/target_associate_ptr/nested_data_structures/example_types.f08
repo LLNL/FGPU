@@ -4,6 +4,8 @@ module example_types
   type, public :: typeS
     real(C_DOUBLE)                        :: double
     real(C_DOUBLE), pointer, dimension(:) :: double_array
+    real(C_DOUBLE), pointer, dimension(:,:) :: double_array_2d
+    real(C_DOUBLE), pointer, dimension(:,:,:) :: double_array_3d
   end type typeS
 
   type, public :: typeG
@@ -34,6 +36,8 @@ module example_types
 
       do n=1,2
          allocate(typeQ_ptr%s_array(n)%double_array(5))
+         allocate(typeQ_ptr%s_array(n)%double_array_2d(2,2))
+         allocate(typeQ_ptr%s_array(n)%double_array_3d(2,2,2))
          allocate(typeQ_ptr%g_array(n)%double_array(5))
       enddo
 

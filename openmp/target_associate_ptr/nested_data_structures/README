@@ -1,4 +1,3 @@
-Example of mapping nested data structures, along with output from OpenMP debug runtime on Sierra showing the list of items mapped to the GPU.
+Example of mapping nested data structures.
 
-run.ext.log - uses pointer assoc/disassoc calls to manually pair up host+device pointers
-run.native.log - uses openmp map pragmas under an API wrapper
+This code example is using the target_associate_ptr call to show how an 'external' memory allocator can be used with OpenMP.
