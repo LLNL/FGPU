@@ -4,4 +4,4 @@ This code example is using the target_associate_ptr call to show how an 'externa
 
 This version has some added complication, in that it uses the preprocessor to create several versions of each function for each needed data type, instead of duplicating the source code multiple times.
 
-The idea of using the preprocessor to create the different function versions was taken from the Fortran FTL project at https://github.com/SCM-NV/ftl.
+This is a rough prototype.  This technique was inspired by the Fortran FTL project at https://github.com/SCM-NV/ftl.

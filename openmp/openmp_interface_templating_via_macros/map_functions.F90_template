@@ -1,3 +1,13 @@
+#if !defined(OMPFTL_TYPE1)
+#  error OMPFTL_TYPE1 must be defined when instantiating OMPWrappers arrays"
+#endif
+#if !defined(OMPFTL_TYPE2)
+#  error OMPFTL_TYPE2 must be defined when instantiating OMPWrappers arrays"
+#endif
+#if !defined(OMPFTL_RANK)
+#  error OMPFTL_RANK must be defined when instantiating OMPWrappers arrays"
+#endif
+
 #if OMPFTL_RANK == 0
 #  define OMPFTL_RANK_STRING
 #  define NUM_ARRAY_ELEMENTS 1
@@ -106,3 +116,7 @@
 #undef MAP_TO_FUNC_NAME
 #undef MAP_FROM_FUNC_NAME
 #undef NUM_ARRAY_ELEMENTS
+
+#undef OMPFTL_TYPE1
+#undef OMPFTL_TYPE2
+#undef OMPFTL_RANK

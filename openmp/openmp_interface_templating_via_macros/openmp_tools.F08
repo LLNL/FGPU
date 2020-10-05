@@ -52,33 +52,26 @@ contains
 #define OMPFTL_TYPE2 C_DOUBLE
 #define OMPFTL_RANK 1
 #include "map_functions.F90_template"
-#undef OMPFTL_RANK
 
+#define OMPFTL_TYPE1 real
+#define OMPFTL_TYPE2 C_DOUBLE
 #define OMPFTL_RANK 2
 #include "map_functions.F90_template"
-#undef OMPFTL_RANK
 
+#define OMPFTL_TYPE1 real
+#define OMPFTL_TYPE2 C_DOUBLE
 #define OMPFTL_RANK 3
 #include "map_functions.F90_template"
-#undef OMPFTL_RANK
-
-#undef OMPFTL_TYPE2
-#undef OMPFTL_TYPE1
 
 ! Instantiate functions for derived types
 #define OMPFTL_TYPE1 type
 #define OMPFTL_TYPE2 typeS
 #define OMPFTL_RANK 1
 #include "map_functions.F90_template"
-#undef OMPFTL_RANK
-#undef OMPFTL_TYPE2
 
+#define OMPFTL_TYPE1 type
 #define OMPFTL_TYPE2 typeQ
 #define OMPFTL_RANK 0
 #include "map_functions.F90_template"
-#undef OMPFTL_RANK
-#undef OMPFTL_TYPE2
-
-#undef OMPFTL_TYPE1
 
 end module openmp_tools
