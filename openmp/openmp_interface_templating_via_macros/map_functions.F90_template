@@ -1,0 +1,122 @@
+#if !defined(OMPFTL_TYPE1)
+#  error OMPFTL_TYPE1 must be defined when instantiating OMPWrappers arrays"
+#endif
+#if !defined(OMPFTL_TYPE2)
+#  error OMPFTL_TYPE2 must be defined when instantiating OMPWrappers arrays"
+#endif
+#if !defined(OMPFTL_RANK)
+#  error OMPFTL_RANK must be defined when instantiating OMPWrappers arrays"
+#endif
+
+#if OMPFTL_RANK == 0
+#  define OMPFTL_RANK_STRING
+#  define NUM_ARRAY_ELEMENTS 1
+#endif
+
+#if OMPFTL_RANK == 1
+#  define OMPFTL_RANK_STRING (:)
+#  define NUM_ARRAY_ELEMENTS SIZE(h_ptr)
+#endif
+
+#if OMPFTL_RANK == 2
+#  define OMPFTL_RANK_STRING (:,:)
+#  define NUM_ARRAY_ELEMENTS SIZE(h_ptr)
+#endif
+
+#if OMPFTL_RANK == 3
+#  define OMPFTL_RANK_STRING (:,:,:)
+#  define NUM_ARRAY_ELEMENTS SIZE(h_ptr)
+#endif
+
+#define M_CONC(A, B) M_CONC_(A, B)
+#define M_CONC_(A, B) A##B
+
+#define MAP_TO_FUNC_NAME M_CONC(map_to_, M_CONC(OMPFTL_TYPE2,OMPFTL_RANK))
+#define MAP_FROM_FUNC_NAME M_CONC(map_from_, M_CONC(OMPFTL_TYPE2,OMPFTL_RANK))
+
+   subroutine MAP_TO_FUNC_NAME (h_ptr, use_external_device_allocator)
+
+      use iso_c_binding
+      implicit none
+      OMPFTL_TYPE1 ( OMPFTL_TYPE2 ) , pointer, intent(in) :: h_ptr OMPFTL_RANK_STRING
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      integer(C_SIZE_T) :: num_bytes, offset
+      integer :: err
+      type(C_PTR) :: d_ptr
+
+      if (use_external_device_allocator) then
+         num_bytes = storage_size(h_ptr,kind=C_SIZE_T)/8 * NUM_ARRAY_ELEMENTS
+         offset = 0
+
+         ! Using omp_target_alloc as a surrogate for an external memory allocation
+         ! library.
+         ! This code example is meant to demonstrate use cases where using an external
+         ! memory library, such as the LLNL UMPIRE library, is required.
+         d_ptr = omp_target_alloc(num_bytes, omp_get_default_device() )
+
+         err = omp_target_associate_ptr( C_LOC(h_ptr), d_ptr, num_bytes, offset, omp_get_default_device() )
+         if (err /= 0) then
+            print *, "Target associate failed."
+         endif
+
+         !$omp target enter data map(always, alloc:h_ptr)
+
+         !$omp target update to(h_ptr)
+      else
+         !$omp target enter data map(to:h_ptr)
+      endif
+      
+   end subroutine MAP_TO_FUNC_NAME
+
+   subroutine MAP_FROM_FUNC_NAME (h_ptr, use_external_device_allocator)
+      use iso_c_binding
+      implicit none
+      OMPFTL_TYPE1 ( OMPFTL_TYPE2 ), pointer, intent(in) :: h_ptr OMPFTL_RANK_STRING
+      logical(C_BOOL), intent(in) :: use_external_device_allocator
+
+      type(C_PTR) :: d_ptr
+      integer :: err
+
+      if (use_external_device_allocator) then
+         !$omp target update from(h_ptr)
+         
+         d_ptr = c_null_ptr
+         !$omp target data use_device_ptr(h_ptr)
+         d_ptr = C_LOC(h_ptr)
+         !$omp end target data
+         
+         if(.NOT. C_ASSOCIATED(d_ptr) ) then
+           print *, "Failed to get buffer address of pointer."
+           call abort
+         endif
+
+         print *, "-- begin target disassociate pointer --"
+         err = omp_target_disassociate_ptr( C_LOC(h_ptr), omp_get_default_device() )
+         print *, "-- end target disassociate pointer --"
+
+         print *, "-- begin target exit data map --"
+         !$omp target exit data map (always, delete:h_ptr)
+         print *, "-- end target exit data map --"
+
+         if (err /= 0) then
+            print *, "Target disassociate on x failed."
+         endif
+      
+         call omp_target_free( d_ptr, omp_get_default_device() )
+      else
+         !$omp target exit data map (from:h_ptr)
+      endif
+
+   end subroutine MAP_FROM_FUNC_NAME
+
+#undef OMPFTL_RANK_STRING
+#undef M_CONC
+#undef M_CONC_
+#undef MAP_TO_FUNC_NAME
+#undef MAP_FROM_FUNC_NAME
+#undef NUM_ARRAY_ELEMENTS
+
+#undef OMPFTL_TYPE1
+#undef OMPFTL_TYPE2
+#undef OMPFTL_RANK

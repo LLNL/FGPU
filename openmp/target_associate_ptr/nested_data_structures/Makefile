@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FC=ftn
 CC=CC
 LINK=ftn
