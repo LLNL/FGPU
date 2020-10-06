@@ -22,7 +22,9 @@ module setup
 		
 		! Map derived type data to GPU
 		!$omp target enter data map(to:op_ptr)
+		!$omp target enter data map(to:op_ptr%array)
 		!$omp target enter data map(to:op_ptr_b)
+		!$omp target enter data map(to:op_ptr_b%array)
 		
 	end subroutine setup_types
 	
@@ -33,7 +35,9 @@ module setup
 	  call operation%remove()
 	  
 	  ! Remove derived type data from GPU
+		!$omp target exit data map(delete:op_ptr%array)
 		!$omp target exit data map(delete:op_ptr)
+		!$omp target exit data map(delete:op_ptr_b%array)
 		!$omp target exit data map(delete:op_ptr_b)
 
 	end subroutine remove_types
