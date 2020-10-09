@@ -85,30 +85,30 @@ print *, "--- AFTER MAP(TO:TYPE1_PTR%TYPE2_ARR) ---"
    end do
 
 !$omp target
-   write(*,*) "\nOn device, before assignments.  Everything should be set to 1.0"
-   write(*,*) "\n---------------------------------------------------------------"
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
+!   write(*,*) "\nOn device, before assignments.  Everything should be set to 1.0"
+!   write(*,*) "\n---------------------------------------------------------------"
+!   write(*,*) "type1%x", type1_ptr%x
+!   write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
+!   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
+!   write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
+!   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
+!   write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 
    type1_ptr%x = 2.0
    type1_ptr%simple_arr(1) = 2.0
    type1_ptr%type2_arr(1)%x = 2.0
    type1_ptr%type2_arr(1)%simple_arr(1) = 2.0
 
-   write(*,*) "\nIn device, after assignments."
-   write(*,*) "\n-----------------------------"
-   write(*,*) "\nFirst entry in type2_arr should be set to 2.0."
-   write(*,*) "type1%x", type1_ptr%x
-   write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
-   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
-   write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
-   write(*,*) "\nSecond entry in type2_arr should be unchanged ( still 1.0 )."
-   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
-   write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
+!   write(*,*) "\nIn device, after assignments."
+!   write(*,*) "\n-----------------------------"
+!   write(*,*) "\nFirst entry in type2_arr should be set to 2.0."
+!   write(*,*) "type1%x", type1_ptr%x
+!   write(*,*) "type1%simple_arr(1)", type1_ptr%simple_arr(1)
+!   write(*,*) "type1%type2_arr(1)%x", type1_ptr%type2_arr(1)%x
+!   write(*,*) "type1%type2_arr(1)%simple_arr(1)", type1_ptr%type2_arr(1)%simple_arr(1)
+!   write(*,*) "\nSecond entry in type2_arr should be unchanged ( still 1.0 )."
+!   write(*,*) "type1%type2_arr(2)%x", type1_ptr%type2_arr(2)%x
+!   write(*,*) "type1%type2_arr(2)%simple_arr(1)", type1_ptr%type2_arr(2)%simple_arr(1)
 !$omp end target 
 
 ! See note above about this being redundant ( at least for IBM behavior ).
