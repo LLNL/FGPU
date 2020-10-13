@@ -26,3 +26,8 @@ set(MPI_Fortran_COMPILER "ftn" CACHE PATH "")
 
 set(MPIEXEC              "/usr/bin/srun" CACHE PATH "")
 set(MPIEXEC_NUMPROC_FLAG "-n" CACHE PATH "")
+
+#------------------------------------------------------------------------------
+# system dependet configurations 
+#------------------------------------------------------------------------------
+set(BLT_SOURCE_DIR "/home/users/cmakrides/lib_builds/blt" CACHE PATH "BLT Root directory")

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project( overlapping_maps_error LANGUAGES CXX Fortran)
+project( targetMapExamples LANGUAGES CXX Fortran)
 
 #------------------------------------------------------------------------------
 # Setup BLT
@@ -24,6 +24,10 @@ else()
     endif()
 endif()
 
+if(NOT DEFINED FGPU_ROOT_DIR)
+  set(FGPU_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../.. CACHE PATH "FGPU Repo root directory")
+endIF()
+
 # Default to C++11 if not set so GTest/GMock can build
 if (NOT BLT_CXX_STD)
     set(BLT_CXX_STD "c++11" CACHE STRING "")
@@ -31,39 +35,8 @@ endif()
 
 include(${BLT_SOURCE_DIR}/SetupBLT.cmake)
 
-# include the basic directory, i.e. BLT specific stuff 
-# Should be after the SetupBLT.cmake inclusion
-if(NOT DEFINED FGPU_ROOT_DIR)
-  set(FGPU_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../..)
-endIF()
+set(exampleDirs overlapping_maps_error_case)
 
-if (EXISTS ${FGPU_ROOT_DIR}/commonFiles/BLT_Basics.cmake)
-  include(${FGPU_ROOT_DIR}/commonFiles/BLT_Basics.cmake)
-endif()
-
-#All
-set(SOURCE_FILES 
-    map_overlap.f90)
-
-foreach (_file ${SOURCE_FILES})
-  set_property(SOURCE ${_file} APPEND_STRING PROPERTY COMPILE_FLAGS "${FORTRAN_USE_C_PREPROCESSOR} ${FORTRAN_FREE_FORMAT}")
+foreach (_dir ${exampleDirs})
+  add_subdirectory(${_dir})
 endforeach()
-
-set(programName runOverlappingMapsError)  
-
-blt_add_executable( NAME ${programName}
-                    SOURCES ${SOURCE_FILES}
-                    DEPENDS_ON openmp)
-
-# Need to add link flag for the cray compilers
-if (C_COMPILER_FAMILY_IS_CRAY)
-  blt_add_target_link_flags(TO ${programName}
-                            FLAGS -homp)
-endif()
-
-get_filename_component(parentDir ${CMAKE_CURRENT_SOURCE_DIR}/.. ABSOLUTE)
-get_filename_component(parentDir ${parentDir} NAME)
-
-install(TARGETS ${programName}
-        RUNTIME DESTINATION bin/${parentDir}
-        LIBRARY DESTINATION lib)

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 project( nested_data_structures LANGUAGES CXX Fortran)
 
-set(BLT_SOURCE_DIR "/home/users/cmakrides/lib_builds/blt")
-
 #------------------------------------------------------------------------------
 # Setup BLT
 #------------------------------------------------------------------------------
@@ -69,7 +67,9 @@ if (C_COMPILER_FAMILY_IS_CRAY)
                             FLAGS -homp)
 endif()
 
+get_filename_component(parentDir ${CMAKE_CURRENT_SOURCE_DIR}/.. ABSOLUTE)
+get_filename_component(parentDir ${parentDir} NAME)
 
 install(TARGETS ${programName}
-        RUNTIME DESTINATION bin
+        RUNTIME DESTINATION bin/${parentDir}
         LIBRARY DESTINATION lib)
