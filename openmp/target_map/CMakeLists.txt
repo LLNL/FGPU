@@ -35,7 +35,7 @@ endif()
 
 include(${BLT_SOURCE_DIR}/SetupBLT.cmake)
 
-set(exampleDirs nested_data_structures derived_types)
+set(exampleDirs nested_data_structures derived_types pointer_alias)
 
 foreach (_dir ${exampleDirs})
   add_subdirectory(${_dir})
