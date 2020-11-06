@@ -1,6 +1,0 @@
-This test measures the time to malloc different allocation sizes on the GPU.
-
-It shows that malloc time steadily increases with larger allocation sizes.  Allocation sizes at the gigabyte level start taking a substantial amount of time.
-
--- Aaron Black
-black27@llnl.gov

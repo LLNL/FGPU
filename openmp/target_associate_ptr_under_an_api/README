@@ -1,0 +1,2 @@
+These are examples of mapping data structures using either OpenMP native map pragmas or using manual target associate/disassociate pointer calls.
+These calls are put under a family of map subroutines to allow the behavior to be selected at runtime.

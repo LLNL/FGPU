@@ -1,1 +1,0 @@
-Testing the performance of individual memory pin operations vs using the MLOCK functionality to specify that all memory allocations should be page-locked.

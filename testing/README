@@ -1,7 +1,0 @@
-Contains examples and cases developed during the LLNL effort to port and stand up codes on the DOE SIERRA platform.
-
-capability_testing - code example testing the capability of different features of the SIERRA platform
-compiler_interoperability_test_cases - code examples testing out the capability to combine the different vendor compilers for mixed language C++/FORTRAN codes on SIERRA
-compiler_test_cases - test cases from bug reports on the XL compiler during the SIERRA COE effort 
-performance_testing - code examples testing performance of some SIERRA features
-tools_test_cases - test cases from bug reports on SIERRA tools and debuggers (both IBM and NVIDIA)
