@@ -1,0 +1,2 @@
+These tests exercise the OpenMP pointer associate/disassociate calls to pair host and device pointers together.
+This allows OpenMP to be used with device pointers that were allocated outside of OpenMP, such as from a CUDA call.

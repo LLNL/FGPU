@@ -1,0 +1,3 @@
+
+This code example is using the target_associate_ptr call to show how an 'external' memory allocator can be used with OpenMP.
+This example is using derived types and nested data, with the OpenMP pragmas under an API to allow selecting either the native OpenMP mapping behavior or the manual pointer association behavior.

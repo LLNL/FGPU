@@ -1,1 +1,0 @@
-Small code example showing that the exponent math call on the GPU is slower in FORTRAN than CPU.

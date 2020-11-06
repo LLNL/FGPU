@@ -1,7 +1,7 @@
 Example testing the OpenMP capability to pair together a host and device pointer that was allocated outside of a map clause.
 This version tests:
 - a multidimension FORTRAN array
-- putting the code for the pointer pairing in a subroutine
+- putting the code for the pointer pairing in a subroutine, which allows selecting either a native OpenMP map pragma or the manual pointer associate/disassociate calls at runtime.
 
 -- Aaron Black
 black27@llnl.gov
