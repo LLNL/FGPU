@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project( targetMapExamples LANGUAGES CXX Fortran)
+project( openmp_examples LANGUAGES CXX Fortran)
 
 #------------------------------------------------------------------------------
 # Setup BLT
@@ -35,7 +35,7 @@ endif()
 
 include(${BLT_SOURCE_DIR}/SetupBLT.cmake)
 
-set(exampleDirs target_map common_error_cases)
+set(exampleDirs target_map)
 
 foreach (_dir ${exampleDirs})
   add_subdirectory(${_dir})

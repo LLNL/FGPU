@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project( targetMapExamples LANGUAGES CXX Fortran)
+project( openmp_runtime_error_handling LANGUAGES CXX Fortran)
 
 #------------------------------------------------------------------------------
 # Setup BLT
