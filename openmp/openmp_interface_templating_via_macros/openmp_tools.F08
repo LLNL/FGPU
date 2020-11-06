@@ -10,6 +10,7 @@ module openmp_tools
 
    interface
 
+#ifdef HAS_OPENMP_5_1
       type(C_PTR) function omp_target_alloc( num_bytes, device_num ) bind ( c, name = 'omp_target_alloc' )
         use iso_c_binding
         implicit none
@@ -42,6 +43,7 @@ module openmp_tools
         type(C_PTR), value :: h_ptr
         integer(C_INT), value :: device_num
       end function omp_target_disassociate_ptr
+#endif
 
    end interface
 

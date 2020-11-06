@@ -1,11 +1,11 @@
 #if !defined(OMPFTL_TYPE1)
-#  error OMPFTL_TYPE1 must be defined when instantiating OMPWrappers arrays"
+#  error "OMPFTL_TYPE1 must be defined when instantiating OMPWrappers arrays"
 #endif
 #if !defined(OMPFTL_TYPE2)
-#  error OMPFTL_TYPE2 must be defined when instantiating OMPWrappers arrays"
+#  error "OMPFTL_TYPE2 must be defined when instantiating OMPWrappers arrays"
 #endif
 #if !defined(OMPFTL_RANK)
-#  error OMPFTL_RANK must be defined when instantiating OMPWrappers arrays"
+#  error "OMPFTL_RANK must be defined when instantiating OMPWrappers arrays"
 #endif
 
 #if OMPFTL_RANK == 0
@@ -82,7 +82,8 @@
          !$omp target update from(h_ptr)
          
          d_ptr = c_null_ptr
-         !$omp target data use_device_ptr(h_ptr)
+         !$omp target data use_device_addr(h_ptr)
+!         !$omp target data use_device_ptr(h_ptr)
          d_ptr = C_LOC(h_ptr)
          !$omp end target data
          

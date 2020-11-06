@@ -80,6 +80,7 @@ program fmain
 		endif
  
       !$omp target
+#ifdef ENABLE_OMP_WRITE
       write(*,*) "\nOn device, after mapping to GPU"
 
       write(*,*) "typeQ_ptr%double", typeQ_ptr%double
@@ -93,7 +94,7 @@ program fmain
       write(*,*) "typeQ_ptr%s_array(2)%double_array", typeQ_ptr%s_array(2)%double_array
       write(*,*) "typeQ_ptr%s_array(2)%double_array_2d", typeQ_ptr%s_array(2)%double_array_2d
       write(*,*) "typeQ_ptr%s_array(2)%double_array_3d", typeQ_ptr%s_array(2)%double_array_3d
-
+#endif
       typeQ_ptr%double =  0
       typeQ_ptr%double_array =  0
 
