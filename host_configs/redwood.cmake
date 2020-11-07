@@ -27,6 +27,13 @@ set(MPI_Fortran_COMPILER "ftn" CACHE PATH "")
 set(MPIEXEC              "/usr/bin/srun" CACHE PATH "")
 set(MPIEXEC_NUMPROC_FLAG "-n" CACHE PATH "")
 
+
+#------------------------------------------------------------------------------
+# OpenMP Support
+#------------------------------------------------------------------------------
+set(BLT_OPENMP_LINK_FLAGS "-homp" CACHE STRING "")  
+#set(OpenMP_EXE_LINKER_FLAGS "-homp" CACHE STRING "") Ask Chris White why this doesn't cause BLT to add this to executables' link lines if they depend on OpenMP
+
 #------------------------------------------------------------------------------
 # system dependet configurations 
 #------------------------------------------------------------------------------
