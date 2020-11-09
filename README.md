@@ -2,25 +2,22 @@ This is a collection of code examples focusing on porting FORTRAN codes to run D
 
 While these examples have a heavy FORTRAN emphasis, some examples also include C++ usage for use in demonstrating OpenMP or CUDA with mixed C++/FORTRAN language executables.
 
-This set of examples can be built with CMake.  It requires BLT ( https://github.com/LLNL/blt ).
-
-Some examples of compiler settings for platforms are in host_configs.
+The code examples are currently being ported to CMake and CTest.
+Some examples of setting CMake options for platforms are in the 'cmake' directory.
 
 Quickstart:
 git clone this repo into 'FGPU'
-git clone BLT into 'BLT'
 mkdir build
 
 Assume you now have the directories:
 FGPU
-BLT
 build
-cd build
 
 To build on an IBM Power platform
-cmake ../FGPU -DBLT_ROOT=../BLT -C ../FGPU/host_configs/blueos.cmake
+cd build
+cmake ../FGPU -C ../FGPU/cmake/blueos.cmake
 make
-
+make test
 
 RELEASE
 LLNL-CODE-769479

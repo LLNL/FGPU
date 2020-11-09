@@ -1,7 +1,6 @@
-blt_add_executable( NAME ptr_to_data
-                    SOURCES ptr_to_data.f90
-                    DEPENDS_ON openmp)
+set(target "omp_map_pointer_alias")
 
-install(TARGETS ptr_to_data
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib)
+add_executable(${target}
+               ptr_to_data.f90)
+
+add_test(test_${target} ${target})

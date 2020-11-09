@@ -1,7 +1,6 @@
-blt_add_executable( NAME nested_data_structures
-                    SOURCES nested_types.f90
-                    DEPENDS_ON openmp)
+set(target "omp_map_nested_data_structures")
 
-install(TARGETS nested_data_structures
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib)
+add_executable(${target}
+               nested_types.f90)
+
+add_test(test_${target} ${target})
