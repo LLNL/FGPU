@@ -6,8 +6,6 @@ include(CTest)
 #-----------------------------------------------------------------------------
 # Setup compiler flags for C++ and Fortran
 #-----------------------------------------------------------------------------
-#set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${FORTRAN_USE_C_PREPROCESSOR} ${FORTRAN_FREE_FORMAT}")
-
 find_package(OpenMP REQUIRED)
 
 message(STATUS "Found OpenMP version ${OpenMP_VERSION}")
