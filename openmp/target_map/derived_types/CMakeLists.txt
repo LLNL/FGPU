@@ -6,4 +6,5 @@ add_executable(${target}
                operations.f
                base_types.f)
 
+install(TARGETS ${target} DESTINATION bin)
 add_test(test_${target} ${target})

@@ -2,6 +2,7 @@ set(target "omp_runtime_reporting_overlapping_maps")
 
 add_executable(${target}
                map_overlap.f90)
+install(TARGETS ${target} DESTINATION bin)
 add_test(test_${target} ${target})
 
 message(STATUS "Setting omp_runtime_reporting_overlapping_maps test to expect a FAIL, will work on more later.")
