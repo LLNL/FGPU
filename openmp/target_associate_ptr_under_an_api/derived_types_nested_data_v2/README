@@ -1,0 +1,7 @@
+This code example is using the target_associate_ptr call to show how an 'external' memory allocator can be used with OpenMP.
+This example is using derived types and nested data, with the OpenMP pragmas under an API to allow selecting either the native OpenMP mapping behavior or the manual pointer association behavior.
+
+The initial version of this example only appeared to work with IBM XLF.  It exhibited issues with derived type pointer components not being attached to the parent derived type correctly.
+When passing something like foo%bar through a subroutine, the compiler may be losing the context necessary to recognize that bar is a component of foo, and correctly attach bar to foo.
+
+This is another attempt to fix this behavior.
