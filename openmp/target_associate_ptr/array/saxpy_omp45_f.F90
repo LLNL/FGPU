@@ -1,5 +1,3 @@
-#define USE_CUSTOM_MAP
-
 module openmp_device_memory_routines
 
    use iso_c_binding
@@ -8,7 +6,6 @@ module openmp_device_memory_routines
    private
 
    public :: omp_target_alloc, omp_target_free, omp_target_associate_ptr, omp_target_disassociate_ptr
-! omp_target_memcpy
 
    interface
 
@@ -48,6 +45,7 @@ module openmp_device_memory_routines
    end interface
 end module openmp_device_memory_routines
 
+
 subroutine testsaxpy_omp45_f
 
   use openmp_device_memory_routines
@@ -55,16 +53,12 @@ subroutine testsaxpy_omp45_f
   use omp_lib
 
   implicit none
-!  integer, parameter :: N = ishft(1,21)
-  integer, parameter :: N = 4
+  integer, parameter :: N = ishft(1,21)
   integer :: i, err
  
   real, pointer :: x(:), y(:)
-#if defined (USE_CUSTOM_MAP)
-  real, pointer :: d_x(:), d_y(:)
-  type(c_ptr) :: cptr, x_cptr, y_cptr
+  type(c_ptr) :: x_cptr, y_cptr
   integer(c_size_t) :: num_bytes, offset
-#endif
   real :: a
 
   allocate( x(N), y(N) )
@@ -72,7 +66,6 @@ subroutine testsaxpy_omp45_f
   y = 2.0
   a = 2.0
 
-#if defined (USE_CUSTOM_MAP)
   num_bytes = sizeof(a)*N
   offset = 0
 
@@ -87,7 +80,6 @@ subroutine testsaxpy_omp45_f
   if (err /= 0) then
      print *, "Target associate on y failed."
   endif
-#endif
 
   !$omp target update to(x,y)
   !$omp target data map(to:N,a)
@@ -101,7 +93,6 @@ subroutine testsaxpy_omp45_f
 
   !$omp target update from(y)
 
-#if defined(USE_CUSTOM_MAP)
   err = omp_target_disassociate_ptr( C_LOC(x), omp_get_default_device() )
   if (err /= 0) then
      print *, "Target disassociate on x failed."
@@ -115,7 +106,6 @@ subroutine testsaxpy_omp45_f
   endif
 !  cptr = C_LOC(d_y)
   call omp_target_free( y_cptr, omp_get_default_device() )
-#endif
 
   write(*,*) "Ran FORTRAN OMP45 kernel. Max error: ", maxval(abs(y-4.0))
 end subroutine testsaxpy_omp45_f
