@@ -1,27 +1,15 @@
-pEXE = test_map_array_slices.exe
+SRC = $(wildcard *.f90)
+EXE =  $(SRC:%.f90=test_%.exe)
 
-.PHONY: run
-run: $(addprefix run_, $(basename $(pEXE)))
+.PHONY: run_all
+run_all: $(addprefix run_, $(basename $(EXE)))
 
-.PHONY: exe
-exe: $(pEXE)
-
-test_map_array_slices.exe: map_array_slices.f90
-	-$(FC) $(FFLAGS)  map_array_slices.f90 -o test_map_array_slices.exe
+test_%.exe: %.f90
+	-$(FC) $(FFLAGS) $< -o $@
 
 run_%: %.exe
 	-./$<
 
-map:
-	xlf_r -qsmp=omp -qoffload -qcuda map_array_slices.f90 -o test_map_array_slices
-	xlf_r -qsmp=omp -qoffload -qcuda map_array_slices_in_type.f90 -o test_map_array_slices_in_type
-
-update:
-	xlf_r -qsmp=omp -qoffload -qcuda update_array_slices.f90 -o test_update_array_slices
-	xlf_r -qsmp=omp -qoffload -qcuda update_array_slices_in_type.f90 -o test_update_array_slices_in_type
-	xlf_r update_array_slices.f90 -o test_update_array_slices_cpu
-	xlf_r update_array_slices_in_type.f90 -o test_update_array_slices_in_type_cpu
-
 .PHONY: clean
 clean:
-	rm -rf $(pEXE) 
+	rm -rf $(EXE) 

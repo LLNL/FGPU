@@ -30,7 +30,7 @@ program map_array_slices
       y(:,j) = DBLE(j)
    end do
 
-   !!$omp parallel do
+   !$omp parallel do
    do j = 1, num_slices
    ! Map and work on slice
       !$omp target teams distribute parallel do private(i) shared(a, x, y, j, num_values) map(tofrom:x(:,j)) map(to:y(:,j)) default(none)
@@ -39,7 +39,7 @@ program map_array_slices
       end do
       !$omp end target teams distribute parallel do
    end do
-   !!$omp end parallel do
+   !$omp end parallel do
 
    do j = 1, num_slices
      expected_value = a * DBLE(j) + DBLE(j)
