@@ -1,9 +1,9 @@
 module prim
   use, intrinsic :: iso_c_binding
+  implicit none
   integer :: nx = 10
   integer :: ny = 10
   integer :: nz = 10
-  implicit none
   
   type prim_type
      real(c_double), allocatable, dimension(:,:,:) :: v1
@@ -13,7 +13,6 @@ module prim
      procedure :: setup => setup_prim
   end type prim_type
   
-    
 contains
   subroutine setup_prim(prim_data)
     class(prim_type), intent(OUT) :: prim_data
