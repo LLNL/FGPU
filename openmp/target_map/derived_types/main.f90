@@ -1,12 +1,23 @@
 ! make clean ; make ; nvprof -f -o test.nvvp ./test
+FUNCTION almost_equal(x, gold, tol) RESULT(b)
+  implicit none
+  real(kind=8),  intent(in) :: x
+  real(kind=8),  intent(in) :: gold
+  REAL,  intent(in) :: tol
+  LOGICAL              :: b
+  b = ( gold * (1 - tol)  <= x ).AND.( x <= gold * (1+tol) )
+END FUNCTION almost_equal
+
+
+
 program derived_type_openmp
 	use operation_def, only : multiplication
 	use setup, only : setup_types, remove_types, op_ptr, op_ptr_b
-	
-  implicit none
+	implicit none
 	real(kind=8), dimension(:,:), pointer :: v, dv
 	integer :: a, i, iop
 	character(len=32) :: arg
+	logical:: almost_equal
 
 	! Size of arrays to allocate
   a = 100
@@ -38,8 +49,11 @@ print *, 'Calling operations....'
 	end do
 	!$omp end target data
 	
-	print *, 'dv = v*array = ',dv(1,1)
-	
+  IF (.NOT.almost_equal(dv(1,1), 8.0D0,0.1)) THEN
+    WRITE(*,*)  '1/ Wrong value for dv = v*array', dv(1,1)
+    STOP 112
+  ENDIF
+
 
 !===============================================================!
 !== Type-bound multiply procedure ==============================!
@@ -50,7 +64,10 @@ print *, 'Calling operations....'
 	end do
 	!$omp end target data
 	
-	print *, 'dv = v*array = ',dv(1,1)
+ IF (.NOT.almost_equal(dv(1,1), 8.0D0,0.1)) THEN
+    WRITE(*,*)  '2/ Wrong value for dv = v*array', dv(1,1)
+    STOP 112
+  ENDIF
 
 	! Deallocate arrays and derived types
 	deallocate(v,dv)

@@ -11,7 +11,6 @@ module base_types
 		integer :: openmp				! Flag for different openmp implementations
 		contains
 		procedure :: setup => setup_values
-		procedure :: remove => remove_values
 	end type base_type
 
 	contains
@@ -29,10 +28,5 @@ module base_types
 		op%nx = nx; op%ny = ny
 
 	end subroutine setup_values
-	
-	subroutine remove_values(op)
-		class(base_type), intent(out) :: op
-		continue
-	end subroutine remove_values
-	
+
 end module base_types

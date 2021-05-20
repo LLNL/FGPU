@@ -1,21 +1,19 @@
 objects = operations.o setup.o base_types.o
-xlcomp = xlf2003_r-gpu
-flags = -qoffload
 
 test: main.o $(objects)
-	$(xlcomp) -o $@ $(flags) $< $(objects)
+	$(FC) -o $@ $(FFLAGS) $< $(objects)
 
-main.o: main.f $(objects)
-	$(xlcomp) -c $< $(flags)
+main.o: main.f90 $(objects)
+	$(FC) -c $< $(FFLAGS)
 
-setup.o: setup.f base_types.o operations.o
-	$(xlcomp) -c setup.f $(flags)
+setup.o: setup.f90 base_types.o operations.o
+	$(FC) -c setup.f90 $(FFLAGS)
 
-operations.o: operations.f base_types.o
-	$(xlcomp) -c operations.f $(flags)
-	
-base_types.o: base_types.f
-	$(xlcomp) -c base_types.f $(flags)
-	
+operations.o: operations.f90 base_types.o
+	$(FC) -c operations.f90 $(FFLAGS)
+
+base_types.o: base_types.f90
+	$(FC) -c base_types.f90 $(FFLAGS)
+
 clean:
-	rm -f *.o *.mod test
+	rm -f *.o *.mod *.modmic test

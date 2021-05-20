@@ -1,5 +1,5 @@
 module setup
-	use base_types, only : base_type, setup_values, remove_values
+	use base_types, only : base_type, setup_values
 	use operation_def, only : multiply_type
 	implicit none
 	type(base_type), target :: operation   ! Derived type without multiply operation bound
@@ -28,11 +28,6 @@ module setup
 	
 	subroutine remove_types()
 		implicit none
-		integer :: i
-	  call operation_b%remove()
-	  call operation%remove()
-	  
-	  ! Remove derived type data from GPU
 		!$omp target exit data map(delete:op_ptr)
 		!$omp target exit data map(delete:op_ptr_b)
 
