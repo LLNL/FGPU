@@ -61,7 +61,7 @@ dv(:,:) = 0
 !===============================================================!
 !== Type-bound multiply procedure ==============================!
 	! Perform operation on v to get dv
-	!$omp target data map(to:v) map(from:dv)
+	!$omp target data map(to:v) map(tofrom:dv)
 	do i=1,10
 		call op_ptr_b%multiply(v, dv, a)
 	end do
