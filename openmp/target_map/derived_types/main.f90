@@ -41,6 +41,7 @@ program derived_type_openmp
 print *, 'Calling operations....'
 
 !===============================================================!
+
 !== Direct call to multiply ====================================!
 	! Perform operation on v to get dv
 	!$omp target data map(to:v) map(from:dv)
@@ -54,6 +55,8 @@ print *, 'Calling operations....'
     STOP 112
   ENDIF
 
+! Reinit value
+dv(:,:) = 0
 
 !===============================================================!
 !== Type-bound multiply procedure ==============================!
