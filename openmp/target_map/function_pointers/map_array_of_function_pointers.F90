@@ -35,7 +35,11 @@ program Main
 
 		do counter=1,10
 			write(*,*)'vector(counter)=',vector(counter)
-		enddo
+            if (vector(counter).NE.(counter*2-1)) then
+                write(*,*) 'wrong value'
+                STOP 112
+            endif
+        enddo
 	
 	end subroutine Driver
 	!############################################################################
@@ -57,7 +61,7 @@ program Main
 		integer,intent(in)::x,shift
 		integer::Eval_Fun
 		
-		!$OMP target data map(tofrom: x,shift)
+		!$OMP target data map(tofrom: Eval_fun)
 			Eval_Fun=fun_pointer(x)-shift
 		!$OMP end target data
 

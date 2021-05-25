@@ -1,9 +1,6 @@
-cpu:
-	xlf2008_r -O3 -g -qsmp=omp -W@,-v -o max_cpu max.f08
-gpu2:
-	xlf2008_r -O2 -g -qsmp=omp -qoffload -W@,-v -o max_gpu2 max.f08
-gpu3:
-	xlf2008_r -O3 -g -qsmp=omp -qoffload -W@,-v -o max_gpu3 max.f08
+max: max.F90
+	$(FC) $(FFLAGS) max.F90 -o max
+
 clean:
-	rm *.mod
-	rm max_*
+	rm -f *.mod*
+	rm -f max
