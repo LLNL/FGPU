@@ -1,0 +1,10 @@
+Example that tests MPI persistent send/receive messages using NVIDIA GPU-direct.
+
+Adapted from
+http://www.llnl.gov/computing/tutorials/mpi_performance/samples/persist.c
+by Ned Nedialkov
+Department of Computing and SoftwareMcMaster University, Hamilton, Ontario, Canada
+
+To test on DOE Sierra machine:
+lrun -n2 ./test
+lrun -M "-gpu" -n2 ./test_omp
