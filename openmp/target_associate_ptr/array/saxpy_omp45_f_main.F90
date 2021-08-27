@@ -1,3 +1,13 @@
+FUNCTION almost_equal(x, gold, tol) RESULT(b)
+  implicit none
+  REAL, intent(in) :: x
+  INTEGER,  intent(in) :: gold
+  REAL,     intent(in) :: tol
+  LOGICAL              :: b
+  b = ( gold * (1 - tol)  <= x ).AND.( x <= gold * (1+tol) )
+END FUNCTION almost_equal
+
+
 subroutine testsaxpy_omp45_f
 
   use iso_c_binding
@@ -11,6 +21,7 @@ subroutine testsaxpy_omp45_f
   type(c_ptr) :: x_cptr, y_cptr
   integer(c_size_t) :: num_bytes, offset
   real :: a
+  LOGICAL :: almost_equal
 
   allocate( x(N), y(N) )
   x = 1.0
@@ -33,14 +44,12 @@ subroutine testsaxpy_omp45_f
   endif
 
   !$omp target update to(x,y)
-  !$omp target data map(to:N,a)
 
   !$omp target teams distribute parallel do private(i) shared(y,a,x) default(none)
   do i=1,N
     y(i) = a*x(i) + y(i)
   end do
   !$omp end target teams distribute parallel do
-  !$omp end target data
 
   !$omp target update from(y)
 
@@ -48,15 +57,23 @@ subroutine testsaxpy_omp45_f
   if (err /= 0) then
      print *, "Target disassociate on x failed."
   endif
-!  cptr = C_LOC(d_x)
   call omp_target_free( x_cptr, omp_get_default_device() )
 
   err = omp_target_disassociate_ptr( C_LOC(y), omp_get_default_device() )
   if (err /= 0) then
      print *, "Target disassociate on y failed."
   endif
-!  cptr = C_LOC(d_y)
   call omp_target_free( y_cptr, omp_get_default_device() )
 
   write(*,*) "Ran FORTRAN OMP45 kernel. Max error: ", maxval(abs(y-4.0))
+
+  IF ( .NOT.almost_equal( maxval(abs(y-4.0)) , 0, 0.01) ) THEN
+    STOP 112
+  ENDIF
+
 end subroutine testsaxpy_omp45_f
+
+program hello
+  call testsaxpy_omp45_f
+end program hello
+

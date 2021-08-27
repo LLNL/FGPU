@@ -16,5 +16,5 @@ int main(int argc, char *argv[])
       testsaxpy_omp45_f_();
    }
 
-	return (0);
+   return (0);
 }
