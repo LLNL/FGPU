@@ -7,7 +7,7 @@ contains
 
    subroutine map_to(ptr)
       double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr
-      double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr_alias
+      double precision, pointer, contiguous, dimension(:,:) :: ptr_alias
 
       ptr_alias => ptr
       !$omp target enter data map(to:ptr_alias)
@@ -15,7 +15,7 @@ contains
 
    subroutine map_delete(ptr)
       double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr
-      double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr_alias
+      double precision, pointer, contiguous, dimension(:,:) :: ptr_alias
       ptr_alias => ptr
       !$omp target exit data map(delete:ptr_alias)
    end subroutine map_delete

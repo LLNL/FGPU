@@ -1,0 +1,7 @@
+*.mod
+*.o
+*.lst
+*.cub
+*.ptx
+test_kernels_opt
+envg

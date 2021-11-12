@@ -13,7 +13,11 @@ int main(int argc, char *argv[])
    #pragma omp parallel for num_threads(nThreads)
    for (int i = 0; i < nThreads; ++i)
    {
-      testsaxpy_omp45_f_();
+		for (int j = 0; j < iters; ++j)
+      {
+  		  testsaxpy_omp45_c();
+        testsaxpy_omp45_f_();
+	   }
    }
 
 	return (0);
