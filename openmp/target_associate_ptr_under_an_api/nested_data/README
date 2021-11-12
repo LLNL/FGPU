@@ -1,3 +1,7 @@
-
 This code example is using the target_associate_ptr call to show how an 'external' memory allocator can be used with OpenMP.
 This example is using derived types and nested data, with the OpenMP pragmas under an API to allow selecting either the native OpenMP mapping behavior or the manual pointer association behavior.
+
+When passing something like foo%bar through a subroutine, the compiler will not perform the attachment of bar to foo.
+A follow-up openmp map must be performed to make that attachment, and that map must use 'always'.
+
+This example is currently failing when the 'always' keyword is used.
