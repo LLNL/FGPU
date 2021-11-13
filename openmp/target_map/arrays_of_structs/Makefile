@@ -1,15 +1,10 @@
-all: serial threaded offloaded
+test.exe: prim.f90 objects.f90 ompdata.f90 testmap.F90
+	$(FC) $(FFLAGS) $^ -o $@ 
 
-serial:
-	mpixlf -g prim.f03 objects.f03 ompdata.f03 testmap.f03 -o test_cpu_serial
+run_test:
+	./test.exe
 
-threaded:
-	mpixlf -g -qsmp=omp -qinfo=omperrtrace prim.f03 objects.f03 ompdata.f03 testmap.f03 -o test_cpu_threaded
-
-offloaded:
-	mpixlf -g -qinfo=omperrtrace -qsmp=omp -qoffload prim.f03 objects.f03 ompdata.f03 testmap.f03 -o test_gpu
+run: run_test
 
 clean:
-	rm -f *.o
-	rm -f *.mod
-	rm -f test_*
+	rm -f *.o *.md *.mod test_* *.modmic *.exe

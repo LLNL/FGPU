@@ -1,4 +1,12 @@
 ! Compiling with IBM XLF with -O2 works.  Compiling with -O3 causes an incorrect answer.
+FUNCTION almost_equal(x, gold, tol) RESULT(b)
+  implicit none
+  real(kind=8),  intent(in) :: x
+  real(kind=8),  intent(in) :: gold
+  real :: tol
+  LOGICAL              :: b
+  b = ( gold * (1 - tol)  <= x ).AND.( x <= gold * (1+tol) )
+END FUNCTION almost_equal
 
   module array_max
   USE iso_c_binding
@@ -75,19 +83,21 @@
 
     real(kind=8), dimension(100,100,100) :: v,w
     real(kind=8) :: vmax=-100.0_8
+    real(kind=8) :: vmax_gold=-100.0_8
     integer :: i,j,k,lmax(3)
+    LOGICAL :: almost_equal
 
-	 ! Populate array with random numbers.
+    ! Populate array with random numbers.
     call random_number(v)
 
-	 ! Init to zero
+    ! Init to zero
     w = 0.0_8
 
     ! Check locations and values on CPU using intrinsics.
-    vmax = maxval(v)
+    vmax_gold = maxval(v)
     lmax = maxloc(v)
     print *,'fortran intrinsics on CPU:'
-    print *,'cpu max',vmax,'at',lmax
+    print *,'cpu max',vmax_gold,'at',lmax
 
     ! Check locations and values using custom openmp reduction function.
     vmax = -100.0_8
@@ -100,22 +110,36 @@
       w(i,j,k) = v(i,j,k)  ! on target
     end do ; end do ; end do
     !$omp end target teams distribute parallel do
-	
-	 ! Zero out the host array version, make sure nothing is operating on this array.
+
+#ifdef _OPENMP
+    ! Zero out the host array version, make sure nothing is operating on this array.
     w = 0.0_8
+#endif
 
     vmax = iMAXVAL(w)
     lmax = iMAXLOC(w)
+    IF ( .NOT.almost_equal(vmax,vmax_gold, 0.1) ) THEN
+      WRITE(*,*)  'Expected', vmax,  'Got', vmax_gold
+      STOP 112
+    ENDIF
     print *, "extrinsics on GPU, first call:"
     print *,'gpu max',vmax,'at',lmax
 
     vmax = iMAXVAL(w)
     lmax = iMAXLOC(w)
+    IF ( .NOT.almost_equal(vmax,vmax_gold, 0.1) ) THEN
+      WRITE(*,*)  'Expected', vmax,  'Got', vmax_gold
+      STOP 112
+    ENDIF
     print *, "extrinsics on GPU, second call:"
     print *,'gpu max',vmax,'at',lmax
 
     vmax = iMAXVAL(w)
     lmax = iMAXLOC(w)
+    IF ( .NOT.almost_equal(vmax,vmax_gold, 0.1) ) THEN
+      WRITE(*,*)  'Expected', vmax,  'Got', vmax_gold
+      STOP 112
+    ENDIF
     print *, "extrinsics on GPU, third call:"
     print *,'gpu max',vmax,'at',lmax
 

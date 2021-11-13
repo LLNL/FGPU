@@ -7,17 +7,12 @@ contains
 
    subroutine map_to(ptr)
       double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr
-      double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr_alias
-
-      ptr_alias => ptr
-      !$omp target enter data map(to:ptr_alias)
+      !$omp target enter data map(to:ptr)
    end subroutine map_to
 
    subroutine map_delete(ptr)
-      double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr
-      double precision, intent(in), pointer, contiguous, dimension(:,:) :: ptr_alias
-      ptr_alias => ptr
-      !$omp target exit data map(delete:ptr_alias)
+      double precision, intent(inout), pointer, contiguous, dimension(:,:) :: ptr
+      !$omp target exit data map(relase:ptr)
    end subroutine map_delete
 
 end module data

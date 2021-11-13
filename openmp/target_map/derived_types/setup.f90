@@ -28,14 +28,14 @@ module setup
 	
 	subroutine remove_types()
 		implicit none
-		integer :: i
-	  call operation_b%remove()
-	  call operation%remove()
-	  
-	  ! Remove derived type data from GPU
-		!$omp target exit data map(delete:op_ptr)
+
+        call operation%remove()
+        call operation_b%remove()
+
+        !$omp target exit data map(delete:op_ptr)
 		!$omp target exit data map(delete:op_ptr_b)
 
+ 
 	end subroutine remove_types
 	
 end module setup

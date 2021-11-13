@@ -11,8 +11,8 @@ module base_types
 		integer :: openmp				! Flag for different openmp implementations
 		contains
 		procedure :: setup => setup_values
-		procedure :: remove => remove_values
-	end type base_type
+        procedure :: remove => remove_values
+    end type base_type
 
 	contains
 	
@@ -27,12 +27,12 @@ module base_types
 		op%array = i
 		op%scalar = i
 		op%nx = nx; op%ny = ny
-
+        !$omp target enter data map(to:op%array) map(to:op%scalar) map(to:op%nx) map(to:op%ny)
 	end subroutine setup_values
-	
-	subroutine remove_values(op)
-		class(base_type), intent(out) :: op
-		continue
-	end subroutine remove_values
-	
+
+    subroutine remove_values(op)
+        class(base_type) :: op
+        !$omp target exit data map(from:op%array) map(from:op%scalar) map(from:op%nx) map(from:op%ny)
+     end subroutine remove_values
+
 end module base_types
