@@ -14,7 +14,7 @@ program saxpy_openmp
   Y = 2.0
 
   ! Perform the SAXPY operation in parallel
-  !$omp parallel do private(i) shared(X, Y, alpha, x)
+  !$omp parallel do private(i) shared(X, Y, alpha, temp)
   do i = 1, N
     temp = alpha * X(i) + Y(i)
     Y(i) = temp

@@ -3,7 +3,7 @@
 # Compiler
 FC = crayftn
 # Compiler flags
-FCFLAGS = -fopenmp -fsanitize=thread
+FCFLAGS = -fopenmp -fsanitize=thread -g
 
 all: saxpy_openmp saxpy_openmp_race
 # Build target
