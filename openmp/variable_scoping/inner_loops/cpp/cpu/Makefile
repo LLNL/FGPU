@@ -1,5 +1,7 @@
-CXX=xlc++_r
-CXXFLAGS=-qsmp=noopt -qoffload -O0 -g -qcheck=all
+#CXX=xlc++_r
+# CXXFLAGS=-qsmp=omp -qoffload
+CXX=craycxx
+CXXFLAGS=-fopenmp -O0 -g
 TARGET=saxpy
 SRC=saxpy.cpp
 OBJ=$(SRC:.cpp=.o)

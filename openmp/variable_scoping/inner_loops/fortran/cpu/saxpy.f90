@@ -13,16 +13,18 @@ program saxpy
     x = 1.0
     y = 2.0
 
-! QUESTION
+! TEST 1
 ! Remove the 'private(j,k)'.  Compiler should complain these are not scoped due to the 'default(none)'.
 ! XL - does not catch the error, unlike the C++ example which does.  Is Fortran expected behavior different?
 ! Are these scoped as firstprivate in Fortran, but not C++?
-! TEST
+! CRAY - does not catch this error.
+! TEST 2
 ! Change the 'private(j,k)' to a shared(j,k).  The compiler should complain that loop iteration variables can not be shared.
 ! XL - does catch this error.
+! CRAY - does not catch this error.
 
     ! Perform the SAXPY operation in parallel
-    !$omp parallel do default(none) shared(x, y, a) private(i, j, k, temp)
+    !$omp parallel do default(none) shared(x, y, a) private(j, k, temp)
     do i = 1, n
         temp = a * x(i)
         

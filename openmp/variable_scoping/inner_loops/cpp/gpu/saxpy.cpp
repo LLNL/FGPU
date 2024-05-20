@@ -3,18 +3,20 @@
 #include <iostream>
 
 
-// QUESTION
+// TEST 1
 // Remove the 'private(j,k)'.  Compiler should complain these are not scoped due to the 'default(none)'.
-// XL - does not catch this error for the target teams case.  It does catch this if the target team distribute is removed.
-// TEST
+// XL - does not catch this error for the target teams case.
+// CRAY - does catch this error.
+// TEST 2
 // Change the 'private(j,k)' to a shared(j,k).  The compiler should complain that loop iteration variables can not be shared.
 // XL - Does catch this error.
+// CRAY - does not catch this error.
 
 void saxpy(int n, float a, std::vector<float>& x, std::vector<float>& y)
 {
     int i, j, k;
 
-    #pragma omp target teams distribute parallel for default(none) private(j,k) shared(n, a, x, y)
+    #pragma omp target teams distribute parallel for default(none) shared(n, a, x, y) private(j,k)
     for (i = 0; i < n; ++i) {
         float temp = a * x[i];
         
