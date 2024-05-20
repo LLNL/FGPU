@@ -6,11 +6,15 @@
 // Remove the 'private(j,k)'.  Compiler should complain these are not scoped due to the 'default(none)'.
 // XL - does catch this error.
 // CRAY - does catch this error.
+// INTEL - does catch this error.
+// GNU - does catch this error.
 //
 // TEST 2
 // Change the 'private(j,k)' to a shared(j,k).  The compiler should complain that loop iteration variables can not be shared.
 // XL - does catch this error.
-// CRAY - does not catch this error
+// CRAY - does not catch this error.
+// INTEL - does not catch this error.
+// GNU - does not catch this error ( wrong answers ).
 
 void saxpy(int n, float a, std::vector<float>& x, std::vector<float>& y)
 {

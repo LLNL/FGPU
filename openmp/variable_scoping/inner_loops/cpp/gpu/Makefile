@@ -1,7 +1,9 @@
 #CXX=xlc++_r
 #CXXFLAGS=-qsmp=omp -qoffload
-CXX=craycxx
-CXXFLAGS=-fopenmp -target-accel=amd_gfx942
+#CXX=craycxx
+#CXXFLAGS=-fopenmp -target-accel=amd_gfx942
+CXX=icpx
+CXXFLAGS=-qopenmp
 TARGET=saxpy
 SRC=saxpy.cpp
 OBJ=$(SRC:.cpp=.o)
