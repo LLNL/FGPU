@@ -4,18 +4,22 @@
 CXX = craycxx
 # Compiler flags
 CXXFLAGS = -fopenmp -fsanitize=thread
-# Target
-TARGET = saxpy_openmp
 # Source files
-SRC = saxpy_openmp.cpp
+SAXPY_OPENMP_SRC = saxpy_openmp.cpp
+SAXPY_OPENMP_RACE_SRC = saxpy_openmp_race.cpp
+
+ALL: saxpy_openmp saxpy_openmp_race
 
 # Build target
-$(TARGET): $(SRC)
+$(SAXPY_OPENMP): saxpy_openmp.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(SAXPY_OPENMP_RACE): saxpy_openmp_race.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 # Clean target
 clean:
-	rm -f $(TARGET) *.o
+	rm -f saxpy_openmp saxpy_openmp_race *.o
 
 # Phony targets
 .PHONY: clean

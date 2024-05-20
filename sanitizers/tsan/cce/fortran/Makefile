@@ -4,18 +4,17 @@
 FC = crayftn
 # Compiler flags
 FCFLAGS = -fopenmp -fsanitize=thread
-# Target
-TARGET = saxpy_openmp
-# Source files
-SRC = saxpy_openmp.f90
 
+all: saxpy_openmp saxpy_openmp_race
 # Build target
-$(TARGET): $(SRC)
+saxpy_openmp: saxpy_openmp.f90
 	$(FC) $(FCFLAGS) -o $@ $^
 
+saxpy_openmp_race: saxpy_openmp_race.f90
+	$(FC) $(FCFLAGS) -o $@ $^
 # Clean target
 clean:
-	rm -f $(TARGET) *.mod
+	rm -f saxpy_openmp saxpy_openmp_race *.mod
 
 # Phony targets
 .PHONY: clean
