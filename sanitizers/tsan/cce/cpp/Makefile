@@ -3,7 +3,7 @@
 # Compiler
 CXX = craycxx
 # Compiler flags
-CXXFLAGS = -fopenmp -fsanitize=thread
+CXXFLAGS = -fopenmp -fsanitize=thread -g
 # Source files
 SAXPY_OPENMP_SRC = saxpy_openmp.cpp
 SAXPY_OPENMP_RACE_SRC = saxpy_openmp_race.cpp
